@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Sardar;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Masters\Mill;
+use App\Models\Masters\Sardar_types;
+use App\Models\Masters\Sardars; 
+use DB, Crypt;
 class MasterController extends Controller
 {
     /**
@@ -12,9 +15,15 @@ class MasterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        //
+        $where = [];
+        if($request->q) { 
+            $where[] = array('name', 'LIKE', trim($request->q).'%');
+        }
+        $sardars = Sardars::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
+        
+        return view('master.view', compact('sardars','request')); 
     }
 
     /**
@@ -24,7 +33,9 @@ class MasterController extends Controller
      */
     public function create()
     {
-        //
+        $mill = Mill::where('status','1')->orderBy('name', 'asc')->get();  
+        $type= Sardar_types::where('status','1')->orderBy('name', 'asc')->get();  
+        return view("master.sardar_create")->with('mill',$mill)->with('type',$type); 
     }
 
     /**
@@ -35,7 +46,31 @@ class MasterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $msgtype='error';
+		$msg='Somethings went Wrong!';
+        DB::beginTransaction();
+        $sardar= Sardars::where('name', trim($request->name))->where('status','1')->where('mobile_number',$request->mobile);
+        if(!$sardar->count() > 0)
+        {
+            $sardar = new Sardars;
+            $sardar->name = $request->input('name'); 
+            $sardar->mobile_number = $request->input('mobile'); 
+            $sardar->address = $request->input('address'); 
+            $sardar->sardar_type_id = $request->input('sardar_type'); 
+            $sardar->mill_id = $request->input('mill'); 
+            $sardar->created_by= "1"; 
+            $sardar->updated_by = "1";  
+            $sardar->save(); 
+            $msgtype='success';
+			$msg='Record has been saved successfully.'; 
+        }   
+        else
+        {
+            $msgtype='error';
+            $msg='Sardar Name  with same mobile number is already exist!';
+        }
+		DB::commit();
+        return redirect('/master/sardar/create')->with($msgtype,$msg);    
     }
 
     /**

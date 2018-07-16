@@ -48,11 +48,11 @@
 		<div class="content-wrapper">
 			<div class="content container">
 				<header class="page-header">
-					@yield('breadcumb')
+					@yield('breadcumb') 
 				</header>
 
-				<section class="page-content">
-					@yield('min_content')
+				<section class="page-content">   
+					@yield('min_content')  
 				</section>
 			</div>
 		</div>
