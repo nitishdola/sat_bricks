@@ -5,13 +5,13 @@
 			<ul class="nav metismenu">
 				<li class="sidebar-header mobile-only"><span>NAVIGATION</span></li>
 				<li>
-					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-meter"></i><span class="hide-menu">Dashboard</span></a>
-					<ul aria-expanded="false" class="collapse">
+					<a class="" href="{{ route('admin.home') }}" aria-expanded="false"><i class="icon dripicons-meter"></i><span class="hide-menu">Dashboard</span></a>
+					<!-- <ul aria-expanded="false" class="collapse">
 						<li> <a href="themes/quantum-pro/demos/demo6/index.html">Default</a></li>
 						<li><a href="themes/quantum-pro/demos/demo6/dashboard-analytics.html">Analytics</a></li>
 						<li><a href="themes/quantum-pro/demos/demo6/dashboard-financials.html">Financials</a></li>
 						<li><a href="themes/quantum-pro/demos/demo6/dashboard-ecommerce.html">Ecommerce</a></li>
-					</ul>
+					</ul> -->
 				</li>
 				<li>
 					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-browser"></i><span class="hide-menu">Pages</span></a>
@@ -125,10 +125,28 @@
 				<li>
 					<a class="has-arrow " href="#" aria-expanded="false">
 						<i class="icon dripicons-folder"></i>
-						<span class="hide-menu">Menu Levels</span>
+						<span class="hide-menu">Master Entries</span>
 					</a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="javascript:void(0);">Level 1.1</a></li>
+
+
+						<li><a href="#" class="has-arrow">Sardars</a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="javascript:void(0);">Add New Sardar</a></li>
+								<li><a href="javascript:void(0);">View All Sardars</a></li>
+								
+								<!-- <li><a href="#" class="has-arrow">Level 2.2</a>
+									<ul aria-expanded="false" class="collapse">
+										<li><a href="javascript:void(0);">Level 3.1</a></li>
+										<li><a href="javascript:void(0);">Level 3.2</a></li>
+										<li><a href="javascript:void(0);">Level 3.3</a></li>
+									</ul>
+								</li> -->
+								
+							</ul>
+						</li>
+
+						<!-- <li><a href="javascript:void(0);">Level 1.1</a></li>
 						<li><a href="#" class="has-arrow">Level 1.2</a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="javascript:void(0);">Level 2.1</a></li>
@@ -142,7 +160,7 @@
 								<li><a href="javascript:void(0);">Level 2.3</a></li>
 							</ul>
 						</li>
-						<li><a href="javascript:void(0);">Level 1.3</a></li>
+						<li><a href="javascript:void(0);">Level 1.3</a></li> -->
 					</ul>
 				</li>
 			</ul>

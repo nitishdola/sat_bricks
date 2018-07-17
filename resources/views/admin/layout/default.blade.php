@@ -52,7 +52,7 @@
 				</header>
 
 				<section class="page-content">   
-					@yield('min_content')  
+					@yield('main_content')  
 				</section>
 			</div>
 		</div>

@@ -1,4 +1,21 @@
- 
+@extends('admin.layout.default')
+
+@section('breadcumb')
+<div class="d-flex align-items-center">
+    <div class="mr-auto">
+        <h1 class="separator">SAT Bricks Dashboard</h1>
+        <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="themes/quantum-pro/demos/demo6/index.html"><i class="icon dripicons-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+@stop
+
+@section('main_content') 
 <div class="tab-content">
     <form  method="POST" action="{{ url('/master/sardar/store') }}"  onsubmit = 'return confirmSubmit()', enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -56,3 +73,4 @@
     </div>
     </form>
 </div>  
+@stop

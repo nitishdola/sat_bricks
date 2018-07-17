@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Sardar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Masters\Mill;
-use App\Models\Masters\Sardar_types;
-use App\Models\Masters\Sardars; 
+use App\Models\Masters\SardarType;
+use App\Models\Masters\Sardar; 
 use DB, Crypt;
 class MasterController extends Controller
 {
@@ -21,7 +21,7 @@ class MasterController extends Controller
         if($request->q) { 
             $where[] = array('name', 'LIKE', trim($request->q).'%');
         }
-        $sardars = Sardars::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
+        $sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
         
         return view('master.view', compact('sardars','request')); 
     }
@@ -34,7 +34,7 @@ class MasterController extends Controller
     public function create()
     {
         $mill = Mill::where('status','1')->orderBy('name', 'asc')->get();  
-        $type= Sardar_types::where('status','1')->orderBy('name', 'asc')->get();  
+        $type= SardarType::where('status','1')->orderBy('name', 'asc')->get();  
         return view("master.sardar_create")->with('mill',$mill)->with('type',$type); 
     }
 

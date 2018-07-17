@@ -12,7 +12,7 @@
 			<ul class="site-logo">
 				<li>
 					<!-- START LOGO -->
-					<a href="themes/quantum-pro/demos/demo6/index.html">
+					<a href="{{ route('admin.home') }}">
 						<div class="logo">
 							<svg id="logo" width="27" height="27" viewBox="0 0 54.03 56.55">
 								<defs>
