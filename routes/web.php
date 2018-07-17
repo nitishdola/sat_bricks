@@ -57,9 +57,3 @@ Route::group(['prefix' => 'employee'], function () {
   Route::get('/password/reset/{token}', 'EmployeeAuth\ResetPasswordController@showResetForm');
 });
 
-Route::group(['prefix' => 'master'], function () { 
-  Route::resource('/sardar', 'Sardar\MasterController');  
-  Route::get('/sardar/create', 'Sardar\MasterController@create');
-  Route::post('/sardar/store', 'Sardar\MasterController@store');
-  Route::post('/sardar/store', 'Sardar\MasterController@store'); 
-});
