@@ -16,13 +16,18 @@ class MasterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(request $request)
-    {
+    { 
+
+        session(['navlink' => '1']);
+        session(['urls1' => 'master/sardar']);
+        session(['urls2' => 'master/sardar/create']); 
+        session(['link1' => 'View']);
+        session(['link2' => 'Add']); 
         $where = [];
         if($request->q) { 
             $where[] = array('name', 'LIKE', trim($request->q).'%');
         }
-        $sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
-        
+        $sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20);         
         return view('master.view', compact('sardars','request')); 
     }
 
@@ -31,8 +36,13 @@ class MasterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(Request $request)
+    { 
+        session(['navlink' => '2']);
+        session(['urls1' => 'master/sardar']);
+        session(['urls2' => 'master/sardar/create']); 
+        session(['link1' => 'View']);
+        session(['link2' => 'Add']); 
         $mill = Mill::where('status','1')->orderBy('name', 'asc')->get();  
         $type= SardarType::where('status','1')->orderBy('name', 'asc')->get();  
         return view("master.sardar_create")->with('mill',$mill)->with('type',$type); 
@@ -49,17 +59,15 @@ class MasterController extends Controller
         $msgtype='error';
 		$msg='Somethings went Wrong!';
         DB::beginTransaction();
-        $sardar= Sardars::where('name', trim($request->name))->where('status','1')->where('mobile_number',$request->mobile);
+        $sardar= Sardar::where('status','1')->where('mobile_number',$request->mobile);
         if(!$sardar->count() > 0)
         {
-            $sardar = new Sardars;
+            $sardar = new Sardar;
             $sardar->name = $request->input('name'); 
             $sardar->mobile_number = $request->input('mobile'); 
             $sardar->address = $request->input('address'); 
             $sardar->sardar_type_id = $request->input('sardar_type'); 
-            $sardar->mill_id = $request->input('mill'); 
-            $sardar->created_by= "1"; 
-            $sardar->updated_by = "1";  
+            $sardar->mill_id = $request->input('mill');  
             $sardar->save(); 
             $msgtype='success';
 			$msg='Record has been saved successfully.'; 
@@ -67,7 +75,7 @@ class MasterController extends Controller
         else
         {
             $msgtype='error';
-            $msg='Sardar Name  with same mobile number is already exist!';
+            $msg='Mobile number is already exist!';
         }
 		DB::commit();
         return redirect('/master/sardar/create')->with($msgtype,$msg);    
@@ -92,7 +100,11 @@ class MasterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        $mill = Mill::where('status','1')->orderBy('name', 'asc')->get();  
+        $type= SardarType::where('status','1')->orderBy('name', 'asc')->get();  
+        $sardars = Sardar::where('status','1')->where('id','=', $id)->first();  
+        return view("master.sardar_edit")->with('sardars', $sardars)->with('mill',$mill)->with('type',$type); 
     }
 
     /**
@@ -102,9 +114,34 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    { 
+        $msgtype='error';
+		$msg='Somethings went Wrong!';
+        DB::beginTransaction();
+        $id=$request->input('sardar_id');
+        $sardar= Sardar::where('id' ,'<>', $id)->where('status','1')->where('mobile_number',$request->mobile);
+        if(!$sardar->count() > 0)
+        {
+            $sardar = Sardar::find($id);
+            $sardar->name = $request->input('name'); 
+            $sardar->mobile_number = $request->input('mobile'); 
+            $sardar->address = $request->input('address'); 
+            $sardar->sardar_type_id = $request->input('sardar_type'); 
+            $sardar->mill_id = $request->input('mill');   
+            $sardar->save(); 
+            $msgtype='success';
+			$msg='Sardar has been updated successfully.'; 
+        }   
+        else
+        {
+            $msgtype='error';
+            $msg='Mobile number is already exist!'; 
+            $id = Crypt::encrypt($id);
+            return redirect('/master/sardar/'.$id.'/edit')->with($msgtype,$msg);
+        }
+		DB::commit();
+        return redirect('/master/sardar/')->with($msgtype,$msg); 
     }
 
     /**
@@ -115,6 +152,16 @@ class MasterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $msgtype='error';
+		$msg='Somethings went Wrong!';
+        DB::beginTransaction();  
+        $sardar = Sardar::find($id);
+        $sardar->status ="0";  
+        $sardar->save(); 
+        $msgtype='success';
+        $msg='Sardar has been deleted successfully.'; 
+        
+		DB::commit(); 
+        return redirect('/master/sardar/')->with($msgtype,$msg); 
     }
 }

@@ -52,6 +52,8 @@
 				</header>
 
 				<section class="page-content">   
+				
+					@include('includes.message')  
 					@yield('main_content')  
 				</section>
 			</div>
