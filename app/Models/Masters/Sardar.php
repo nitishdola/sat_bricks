@@ -13,7 +13,7 @@ class Sardar extends Model
     protected $guarded   	= ['_token'];
     public static $rules 	= [
     	'name' 				=> 'required|max:127',
-    	'mobile_number' 	=> 'required|numeric|size:11',
+    	'mobile_number' 	=> 'required|unique:sardars|numeric|digits:10',
     	'address' 			=> 'required|min:10',
     	'sardar_type_id' 	=> 'required|exists:sardar_types,id',
     	'mill_id' 			=> 'required|exists:mills,id', 

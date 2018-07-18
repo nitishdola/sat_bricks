@@ -132,8 +132,8 @@
 
 						<li><a href="#" class="has-arrow">Sardars</a>
 							<ul aria-expanded="false" class="collapse">
-								<li><a href="javascript:void(0);">Add New Sardar</a></li>
-								<li><a href="javascript:void(0);">View All Sardars</a></li>
+								<li><a href="{{ route('admin.sardar.create') }}">Add New Sardar</a></li>
+								<li><a href="{{ route('admin.sardar.index') }}">View All Sardars</a></li>
 								
 								<!-- <li><a href="#" class="has-arrow">Level 2.2</a>
 									<ul aria-expanded="false" class="collapse">

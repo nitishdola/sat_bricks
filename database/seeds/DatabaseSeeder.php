@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AdminSeed::class);
+        //$this->call(AdminSeed::class);
+        //$this->call(SardarType::class);
+        $this->call(MillType::class);
     }
 }

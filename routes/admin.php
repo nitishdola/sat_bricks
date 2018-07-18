@@ -11,11 +11,25 @@ Route::get('/home', function () {
 })->name('home');
 
 
-Route::group(['prefix' => 'master'], function () { 
-	Route::group(['prefix' => 'sardar'], function () { 
-	  Route::get('/', 'Sardar\MasterController')->name('sardar.index');  
-	  Route::get('/sardar/create', 'Sardar\MasterController@create')->name('sardar.create');
-	  Route::post('/sardar/store', 'Sardar\MasterController@store')->name('sardar.save');
-	});
+Route::group(['prefix'=>'master'], function() {
+    Route::group(['prefix'=>'sardar'], function() {
+        Route::get('/create', [
+            'as' => 'sardar.create',
+            'middleware' => ['admin'],
+            'uses' => 'Sardar\MasterController@create'
+        ]);
+
+        Route::post('/store', [
+            'as' => 'sardar.store',
+            'middleware' => ['admin'],
+            'uses' => 'Sardar\MasterController@store'
+        ]);
+
+        Route::get('/', [
+            'as' => 'sardar.index',
+            'middleware' => ['admin'],
+            'uses' => 'Sardar\MasterController@index'
+        ]);
+    });
 });
 

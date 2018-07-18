@@ -51,7 +51,17 @@
 					@yield('breadcumb') 
 				</header>
 
-				<section class="page-content">   
+				<section class="page-content"> 
+					@if(Session::has('message'))
+			        <div class="row">
+			           <div class="col-lg-12">
+			                 <div class="alert {{ Session::get('alert-class', 'alert-info') }}">
+			                       <button type="button" class="close" data-dismiss="alert">×</button>
+			                       {!! Session::get('message') !!}
+			                 </div>
+			              </div>
+			        </div>
+			        @endif  
 					@yield('main_content')  
 				</section>
 			</div>

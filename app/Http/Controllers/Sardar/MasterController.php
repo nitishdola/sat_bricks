@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Masters\Mill;
 use App\Models\Masters\SardarType;
 use App\Models\Masters\Sardar; 
-use DB, Crypt;
+use DB, Crypt, Helper, Validator, Redirect;
 class MasterController extends Controller
 {
     /**
@@ -33,9 +33,9 @@ class MasterController extends Controller
      */
     public function create()
     {
-        $mill = Mill::where('status','1')->orderBy('name', 'asc')->get();  
-        $type= SardarType::where('status','1')->orderBy('name', 'asc')->get();  
-        return view("master.sardar_create")->with('mill',$mill)->with('type',$type); 
+        $mills          = Helper::allMills($list = true); 
+        $sardar_types   = Helper::allSardarTypes($list = true);
+        return view("master.sardar_create", compact('mills', 'sardar_types')); 
     }
 
     /**
@@ -46,31 +46,21 @@ class MasterController extends Controller
      */
     public function store(Request $request)
     {
-        $msgtype='error';
-		$msg='Somethings went Wrong!';
-        DB::beginTransaction();
-        $sardar= Sardars::where('name', trim($request->name))->where('status','1')->where('mobile_number',$request->mobile);
-        if(!$sardar->count() > 0)
-        {
-            $sardar = new Sardars;
-            $sardar->name = $request->input('name'); 
-            $sardar->mobile_number = $request->input('mobile'); 
-            $sardar->address = $request->input('address'); 
-            $sardar->sardar_type_id = $request->input('sardar_type'); 
-            $sardar->mill_id = $request->input('mill'); 
-            $sardar->created_by= "1"; 
-            $sardar->updated_by = "1";  
-            $sardar->save(); 
-            $msgtype='success';
-			$msg='Record has been saved successfully.'; 
-        }   
-        else
-        {
-            $msgtype='error';
-            $msg='Sardar Name  with same mobile number is already exist!';
+        $message    = $class = '';
+        $data       = $request->all();
+        
+        $validator = Validator::make($data, Sardar::$rules);
+        if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
+       
+        
+        if(Sardar::create($data)) {
+            $class      .= 'alert-success';
+            $message    .= 'Sardar added successfully !';
+        }else{
+            $class      .= 'alert-danger';
+            $message    .= 'Unable store sardar !';
         }
-		DB::commit();
-        return redirect('/master/sardar/create')->with($msgtype,$msg);    
+        return Redirect::route('admin.sardar.index')->with('message', $message);    
     }
 
     /**
