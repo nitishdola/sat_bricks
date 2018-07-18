@@ -21,18 +21,19 @@ class MasterController extends Controller
     }
     public function index(request $request)
     { 
-        session(['navlink' => '2']); 
-        session(['urls1' => 'admin.sardar.create']); 
-        session(['urls2' => 'admin.sardar.index']); 
-        session(['link1' => 'Add']);
-        session(['link2' => 'View']); 
+    
+        $navlink='2';
+        $urls1 = 'admin.sardar.create';
+        $urls2  =  'admin.sardar.index';
+        $link1 = 'Add';
+        $link2 = 'View'; 
         $where = [];
         if($request->q) { 
             $where[] = array('name', 'LIKE', trim($request->q).'%');
         }
         $sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
         
-        return view('master.view', compact('sardars','request')); 
+        return view('master.view', compact('sardars','request','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -41,16 +42,16 @@ class MasterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        session(['navlink' => '1']);
-        session(['urls1' => 'admin.sardar.create']); 
-        session(['urls2' => 'admin.sardar.index']); 
-        session(['link1' => 'Add']);
-        session(['link2' => 'View']); 
+    { 
+        $navlink='1';
+        $urls1 = 'admin.sardar.create';
+        $urls2  =  'admin.sardar.index';
+        $link1 = 'Add';
+        $link2 = 'View'; 
         $sardars = new Sardar;
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true);
-        return view("master.sardar_create", compact('mills', 'sardar_types', 'sardars')); 
+        return view("master.sardar_create", compact('mills', 'sardar_types', 'sardars','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -97,16 +98,16 @@ class MasterController extends Controller
      */
     public function edit($id)
     {
-        session(['navlink' => '2']); 
-        session(['urls1' => 'admin.sardar.create']); 
-        session(['urls2' => 'admin.sardar.index']); 
-        session(['link1' => 'Add']);
-        session(['link2' => 'View']); 
+        $navlink='2';
+        $urls1 = 'admin.sardar.create';
+        $urls2  =  'admin.sardar.index';
+        $link1 = 'Add';
+        $link2 = 'View'; 
         $id = Crypt::decrypt($id); 
         $sardars = Sardar::where('status','1')->where('id','=', $id)->first(); 
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true); 
-        return view("master.sardar_edit", compact('mills', 'sardar_types', 'sardars')); 
+        return view("master.sardar_edit", compact('mills', 'sardar_types', 'sardars','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
