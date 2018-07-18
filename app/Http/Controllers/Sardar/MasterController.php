@@ -48,10 +48,9 @@ class MasterController extends Controller
         $urls2  =  'admin.sardar.index';
         $link1 = 'Add';
         $link2 = 'View'; 
-        $sardars = new Sardar;
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true);
-        return view("master.sardar_create", compact('mills', 'sardar_types', 'sardars','navlink','urls1','urls2','link1','link2')); 
+        return view("master.sardar_create", compact('mills', 'sardar_types','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -104,10 +103,10 @@ class MasterController extends Controller
         $link1 = 'Add';
         $link2 = 'View'; 
         $id = Crypt::decrypt($id); 
-        $sardars = Sardar::where('status','1')->where('id','=', $id)->first(); 
+        $sardar = Sardar::findOrFail($id); 
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true); 
-        return view("master.sardar_edit", compact('mills', 'sardar_types', 'sardars','navlink','urls1','urls2','link1','link2')); 
+        return view("master.sardar_edit", compact('mills', 'sardar_types', 'sardar','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -117,41 +116,33 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {  
+        
+        $id = Crypt::decrypt($id);
         $message    = $class = '';
+        $rules      = Sardar::$rules;
+        $rules['mobile_number'] = $rules['mobile_number'] . ',id,' . $id;
+
         $data       = $request->all(); 
-       $validator = Validator::make($data, Sardar::$updateRules);
+
+        $sardar = Sardar::find($id);
+        
+        $validator = Validator::make($data, $rules);
         if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
 
-        DB::beginTransaction();  
-        $id=$request->input('sardar_id');  
-        
-        $sardar= Sardar::where('id' ,'<>', $id)->where('status','1')->where('mobile_number',$request->mobile_number);
-        if(!$sardar->count() > 0)
-        {
-            $data = Sardar::find($id);
-            $data->name = $request->input('name'); 
-            $data->mobile_number = $request->input('mobile_number'); 
-            $data->address = $request->input('address'); 
-            $data->sardar_type_id = $request->input('sardar_type_id'); 
-            $data->mill_id = $request->input('mill_id');    
-            if($data->save()) {
-                $class      .= 'alert-success';
-                $message    .= 'Sardar has been updated successfully !';
-            }else{
-                $class      .= 'alert-danger';
-                $message    .= 'Unable delete sardar !';
-            } 
-        }   
-        else
-        {   
+        $sardar->fill($data);
+
+        if($sardar->save()) {
+            $class      .= 'alert-success';
+            $message    .= 'Sardar has been updated successfully !';
+        }else{
             $class      .= 'alert-danger';
-            $message    .= 'Mobile Number is used by another Sardar!';
-            return Redirect::back()->with('message', $message)->with('class', $class );   
-        }
-		DB::commit(); 
-        return Redirect::route('admin.sardar.index')->with('message', $message)->with('class', $class );    
+            $message    .= 'Unable update sardar !';
+        }   
+
+        return Redirect::route('admin.sardar.index')->with(['message' => $message, 'class' => $class]);
+    
     }
 
     /**

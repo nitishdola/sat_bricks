@@ -41,7 +41,7 @@ Route::group(['prefix'=>'master'], function() {
             'middleware' => ['admin'],
             'uses' => 'Sardar\MasterController@edit'
         ]);
-        Route::post('/update', [
+        Route::post('/update/{id}', [
             'as' => 'sardar.update',
             'middleware' => ['admin'],
             'uses' => 'Sardar\MasterController@update'

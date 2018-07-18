@@ -22,12 +22,11 @@
             <div class="card-body">
 
                 @include('includes.inner_nav')    
-                {!! Form::open(array('route' => 'admin.sardar.update', 'id' => 'admin.sardar.update')) !!}
+                {!! Form::model($sardar, array('route' => ['admin.sardar.update', Crypt::encrypt($sardar->id)], 'id' => 'admin.sardar.update')) !!}
                     @include('master._sardar_create')
                      
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a  href="{{ route('admin.sardar.index') }}"  class="btn btn-danger" style="color:#fff !important">Back</a>
-                        {{ Form::hidden('sardar_id', $sardars->id) }}
                 {!! Form::close() !!}
             </div>
         </div>
