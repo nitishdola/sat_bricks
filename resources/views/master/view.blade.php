@@ -31,9 +31,28 @@
     <div class="card">
         <div class="card-body">  
 @include('includes.inner_nav')  
+
+<form action="{{url('/master/sardar')}}" method="GET" role="search">
+                 {{ csrf_field() }} 
+                    <div class="row">
+                        <div class="col-md-12  mg-1">
+                            <div class="form-group input-group col-md-3">
+                                <input type="text" placeholder="Search by Name"
+                                    name="q" autocomplete="off" class="form-control " value="{{ $request->q }}"    >
+                                <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" data-toggle="tooltip"   title="Search!"><i class="icon dripicons-search" style="color:#fff" ></i>
+                                </button></span>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
             <div class="table-responsive" >
+            <?php $i = 1;?>
                 <table class="table table-bordered">
                 <tr>
+                <th>
+                 Sl.
+                </th>
                 <th>
                 Name
                 </th>
@@ -56,6 +75,9 @@
                 @foreach($sardars as $sardars)
                 <tr>
                 <td>
+                <?php echo $i;?>
+                </td>
+                <td>
                 {{$sardars->name}}
                 </td>
                 <td>
@@ -74,14 +96,14 @@
                 
                     <form method="POST" action="{{ route('sardar.delete', $sardars->id) }}" onsubmit = 'return confirmDelete()'>
                     {{ csrf_field() }}  
-                    <a href="{{ url('/master/sardar/'.Crypt::encrypt($sardars->id).'/edit')}}" data-toggle="tooltip" class="btn btn-sm btn-primary" title="Edit">Edit</a>
-                    
-                    <button class=" btn btn-sm btn-danger " data-toggle="tooltip" class=" btn btn-xs btn-danger"  title="Delete!">Delete</button>
+                    <a href="{{ url('/master/sardar/'.Crypt::encrypt($sardars->id).'/edit')}}" data-toggle="tooltip" class="btn btn-primary" title="Edit">Edit</a>
+                    <button  data-toggle="tooltip" class=" btn btn-danger"  title="Delete!">Delete</button>
                                         
                     </form>
                 
                     
                 </td>
+                <?php   $i++;?>
                 </tr>
                 @endforeach
                 @endif

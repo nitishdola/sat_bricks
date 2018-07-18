@@ -101,7 +101,7 @@
                 <div class="col-sm-6 inline ">
                 <button type="submit" class="btn btn-primary">Submit
                 </button>
-                <a class="btn btn-danger" href="#">Reset</a>
+                <a  href="{{ url('/master/sardar/create')}}"  class="btn btn-danger" style="color:#fff !important">Reset</a>
                 </div>                              
             </div>                
         </div>            

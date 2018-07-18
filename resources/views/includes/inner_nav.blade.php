@@ -6,6 +6,6 @@
                             <li class="nav-item">
                                 <a  class="{{ session()->get('navlink')=="2" ? 'nav-link active show' : 'nav-link' }}"  href="{{ url(session()->get('urls2')) }}">{{  session()->get('link2')  }}</a> 
                             </li>
-                            </ul>
+                            </ul> 
  
   

@@ -8,6 +8,7 @@ use App\Models\Masters\Mill;
 use App\Models\Masters\SardarType;
 use App\Models\Masters\Sardar; 
 use DB, Crypt;
+ 
 class MasterController extends Controller
 {
     /**
@@ -15,6 +16,10 @@ class MasterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function index(request $request)
     { 
 
