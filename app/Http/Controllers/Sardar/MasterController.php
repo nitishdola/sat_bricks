@@ -75,15 +75,15 @@ class MasterController extends Controller
             $sardar->mill_id = $request->input('mill');  
             $sardar->save(); 
             $msgtype='success';
-			$msg='Record has been saved successfully.'; 
+			$msg='Sardar has been added successfully.'; 
         }   
         else
         {
             $msgtype='error';
-            $msg='Mobile number is already exist!';
+            $msg='Mobile number is already used by another sardar!';
         }
 		DB::commit();
-        return redirect('/master/sardar/create')->with($msgtype,$msg);    
+        return redirect('sardar.create')->with($msgtype,$msg);    
     }
 
     /**
@@ -141,7 +141,7 @@ class MasterController extends Controller
         else
         {
             $msgtype='error';
-            $msg='Mobile number is already exist!'; 
+            $msg='Mobile number is already used by another sardar!'; 
             $id = Crypt::encrypt($id);
             return redirect('/master/sardar/'.$id.'/edit')->with($msgtype,$msg);
         }
