@@ -13,27 +13,29 @@
 @section('breadcumb')
 <div class="d-flex align-items-center">
     <div class="mr-auto">
-        <h1 class="separator">Sardar</h1>
+        <h1 class="separator">SAT Bricks| Sardars</h1>
         <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="themes/quantum-pro/demos/demo6/index.html"><i class="icon dripicons-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">View</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.sardar.index') }}">Sardars</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">View</a></li>
             </ol>
         </nav>
     </div>
 </div>
 @stop 
+
+
 @section('main_content') 
 
-<div class="card-deck m-b-30"> 
-
-    <div class="card">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card"> 
         <div class="card-body">  
 @include('includes.inner_nav')  
-
-<form action="{{url('/master/sardar')}}" method="GET" role="search">
-                 {{ csrf_field() }} 
+{!! Form::open(['method' => 'GET', 'route' => ['admin.sardar.index']]) !!}
+     
+              {{ csrf_field() }} 
                     <div class="row">
                         <div class="col-md-12  mg-1">
                             <div class="form-group input-group col-md-3">
@@ -45,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                    {!! Form::close() !!}
             <div class="table-responsive" >
             <?php $i = 1;?>
                 <table class="table table-bordered">
@@ -92,14 +94,12 @@
                 <td>
                 {{$sardars->mills->name}}
                 </td>
-                <td align="center"> 
-                
-                    <form method="POST" action="{{ route('sardar.delete', $sardars->id) }}" onsubmit = 'return confirmDelete()'>
-                    {{ csrf_field() }}  
-                    <a href="{{ url('/master/sardar/'.Crypt::encrypt($sardars->id).'/edit')}}" data-toggle="tooltip" class="btn btn-primary" title="Edit">Edit</a>
+                <td align="center">  
+                     {!! Form::open(['method' => 'POST', 'route' => ['admin.sardar.destroy', $sardars->id], 'onsubmit' => 'return confirmDelete()' ]) !!}
+     
+                    <a href="{{route('admin.sardar.edit', ['id'=>Crypt::encrypt($sardars->id)]) }}" data-toggle="tooltip" class="btn btn-primary" title="Edit">Edit</a>
                     <button  data-toggle="tooltip" class=" btn btn-danger"  title="Delete!">Delete</button>
-                                        
-                    </form>
+                    {!! Form::close() !!}
                 
                     
                 </td>
@@ -112,5 +112,6 @@
             </div>  
         </div>  
     </div>
+</div>
 </div>
 @stop
