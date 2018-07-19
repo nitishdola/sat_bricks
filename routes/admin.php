@@ -49,3 +49,52 @@ Route::group(['prefix'=>'master'], function() {
     });
 }); 
 
+
+
+Route::group(['prefix'=>'master'], function() {
+    Route::group(['prefix'=>'employee'], function() {
+        Route::get('/create', [
+            'as' => 'employee.create',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@create'
+        ]);
+
+        Route::post('/store', [
+            'as' => 'employee.store',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@store'
+        ]);
+
+        Route::get('/', [
+            'as' => 'employee.index',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@index'
+        ]);
+        Route::post('/destroy/{id}', [
+            'as' => 'employee.destroy',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@destroy'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'employee.edit',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'employee.update',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@update'
+        ]);
+        Route::get('/password/{id}', [
+            'as' => 'employee.password',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@password'
+        ]);
+        Route::post('/change/{id}', [
+            'as' => 'employee.change',
+            'middleware' => ['admin'],
+            'uses' => 'Employee\EmployeesController@change'
+        ]);
+    });
+}); 
+

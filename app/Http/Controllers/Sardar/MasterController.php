@@ -33,7 +33,7 @@ class MasterController extends Controller
         }
         $sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
         
-        return view('master.view', compact('sardars','request','navlink','urls1','urls2','link1','link2')); 
+        return view('master.sardar.view', compact('sardars','request','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -50,7 +50,7 @@ class MasterController extends Controller
         $link2 = 'View'; 
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true);
-        return view("master.sardar_create", compact('mills', 'sardar_types','navlink','urls1','urls2','link1','link2')); 
+        return view("master.sardar.sardar_create", compact('mills', 'sardar_types','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -106,7 +106,7 @@ class MasterController extends Controller
         $sardar = Sardar::findOrFail($id); 
         $mills          = Helper::allMills($list = true); 
         $sardar_types   = Helper::allSardarTypes($list = true); 
-        return view("master.sardar_edit", compact('mills', 'sardar_types', 'sardar','navlink','urls1','urls2','link1','link2')); 
+        return view("master.sardar.sardar_edit", compact('mills', 'sardar_types', 'sardar','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -122,7 +122,7 @@ class MasterController extends Controller
         $id = Crypt::decrypt($id);
         $message    = $class = '';
         $rules      = Sardar::$rules;
-        $rules['mobile_number'] = $rules['mobile_number'] . ',id,' . $id;
+        $rules['mobile_number'] = $rules['mobile_number'] . ',mobile_number,'. $id.',id' ;  
 
         $data       = $request->all(); 
 
@@ -165,6 +165,6 @@ class MasterController extends Controller
             $message    .= 'Unable delete sardar !';
         } 
         DB::commit(); 
-        return Redirect::route('admin.sardar.index')->with('message', $message);  
+        return Redirect::route('admin.sardar.index')->with(['message' => $message, 'class' => $class]); 
     }
 }

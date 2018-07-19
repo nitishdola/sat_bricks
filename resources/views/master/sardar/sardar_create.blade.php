@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="themes/quantum-pro/demos/demo6/index.html"><i class="icon dripicons-home"></i></a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.sardar.index') }}">Sardars</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Add</a></li>
             </ol>
         </nav>
     </div>
@@ -21,12 +21,14 @@
         <div class="card"> 
             <div class="card-body">
 
-                @include('includes.inner_nav')    
-                {!! Form::model($sardar, array('route' => ['admin.sardar.update', Crypt::encrypt($sardar->id)], 'id' => 'admin.sardar.update')) !!}
-                    @include('master._sardar_create')
+                @include('includes.inner_nav')  
+                {!! Form::open(array('route' => 'admin.sardar.store', 'id' => 'admin.sardar.store')) !!}
+
+                    @include('master.sardar._sardar_create')
                      
-                        <button type="submit" class="btn btn-primary">Update</button>
-                        <a  href="{{ route('admin.sardar.index') }}"  class="btn btn-danger" style="color:#fff !important">Back</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a  href="{{ route('admin.sardar.create') }}"  class="btn btn-danger" >Reset</a>
+             
                 {!! Form::close() !!}
             </div>
         </div>

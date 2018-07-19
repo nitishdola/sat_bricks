@@ -130,12 +130,13 @@
 					<ul aria-expanded="false" class="collapse">
 
 
-						<li><a href="#" class="has-arrow">Sardars</a>
-							<ul aria-expanded="false" class="collapse">
+						<li><a href="{{ route('admin.sardar.create') }}" >Sardars</a></li>
+						<li><a href="{{ route('admin.employee.create') }}"  >Employees</a></li>
+							<!-- <ul aria-expanded="false" class="collapse">
 								<li><a href="{{ route('admin.sardar.create') }}">Add New Sardar</a></li>
 								<li><a href="{{ route('admin.sardar.index') }}">View All Sardars</a></li>
 								
-								<!-- <li><a href="#" class="has-arrow">Level 2.2</a>
+								<li><a href="#" class="has-arrow">Level 2.2</a>
 									<ul aria-expanded="false" class="collapse">
 										<li><a href="javascript:void(0);">Level 3.1</a></li>
 										<li><a href="javascript:void(0);">Level 3.2</a></li>
@@ -145,7 +146,8 @@
 								
 							</ul>
 						</li>
-
+						
+						
 						<!-- <li><a href="javascript:void(0);">Level 1.1</a></li>
 						<li><a href="#" class="has-arrow">Level 1.2</a>
 							<ul aria-expanded="false" class="collapse">

@@ -10,30 +10,21 @@ class Employee extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $table    = 'employees';
+    public $primaryKey  = 'id';
+    public $timestamps  = true;
+    protected $fillable 	= array('name','mobile_number','password','address','salary' ); 
+    protected $guarded   	= ['_token'];
+    public static $rules 	= [
+    	'name' 				=> 'required|max:127',
+    	'mobile_number' 	=> 'required|numeric|digits:10|unique:employees',
+    	'address' 			=> 'required|max:200',
+    	'salary'         	=> "required|regex:/^\d*(\.\d{1,2})?$/",
+    ]; 
+     
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
+    ]; 
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new EmployeeResetPassword($token));

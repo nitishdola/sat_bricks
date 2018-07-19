@@ -28,6 +28,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/menu-type/auto-hide.css') }}">
 	<!-- ======================= THEME COLOR STYLES ===========================-->
 	<link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/themes/theme-j.css') }}">
+	<!-- ======================= USER DEFINE STYLE ===========================-->
+	<link rel="stylesheet" href="{{ asset('assets/css/common/mystyle.css') }}">
 </head>
 
 

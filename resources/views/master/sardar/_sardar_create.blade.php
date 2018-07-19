@@ -19,7 +19,7 @@
 
       {!! Form::textarea('address', null, ['class' => 'form-control required col-md-8', 'id' => 'address', 'placeholder' => 'Address', 'required' => 'true','rows' => 5 ]) !!}
     
-    {!! $errors->first('name', '<span class="help-inline">:message</span>') !!}
+    {!! $errors->first('address', '<span class="help-inline">:message</span>') !!}
 </div>
 <div class="form-group {{ $errors->has('sardar_type_id') ? 'has-error' : ''}}">
     {!! Form::label('sardar_type *', '', array('class' => 'form-control-plaintext')) !!}

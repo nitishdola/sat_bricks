@@ -13,11 +13,11 @@
 @section('breadcumb')
 <div class="d-flex align-items-center">
     <div class="mr-auto">
-        <h1 class="separator">SAT Bricks| Sardars</h1>
+        <h1 class="separator">SAT Bricks| Employees</h1>
         <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="themes/quantum-pro/demos/demo6/index.html"><i class="icon dripicons-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.sardar.index') }}">Sardars</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.sardar.index') }}">Employees</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">View</a></li>
             </ol>
         </nav>
@@ -33,7 +33,7 @@
         <div class="card"> 
         <div class="card-body">  
 @include('includes.inner_nav')  
-{!! Form::open(['method' => 'GET', 'route' => ['admin.sardar.index']]) !!}
+{!! Form::open(['method' => 'GET', 'route' => ['admin.employee.index']]) !!}
      
               {{ csrf_field() }} 
                     <div class="row">
@@ -65,40 +65,35 @@
                 Address 
                 </th>
                 <th>
-                Sardar Type
-                </th>
-                <th>
-                Mill
-                </th>
+                Salary
+                </th> 
                 <th></th>
                 </tr>
 
-                @if(count($sardars) > 0)
-                @foreach($sardars as $sardars)
+                @if(count($employees) > 0)
+                @foreach($employees as $employees)
                 <tr>
                 <td>
                 <?php echo $i;?>
                 </td>
                 <td>
-                {{$sardars->name}}
+                {{$employees->name}}
                 </td>
                 <td>
-                {{$sardars->mobile_number}}
+                {{$employees->mobile_number}}
                 </td>
                 <td>
-                {{$sardars->address}}
-                </td>
+                {{$employees->address}}
+                </td> 
                 <td>
-                {{$sardars->sardar_types->name}}
-                </td>
-                <td>
-                {{$sardars->mills->name}}
-                </td>
+                {{$employees->salary}}
+                </td> 
                 <td align="center">  
-                     {!! Form::open(['method' => 'POST', 'route' => ['admin.sardar.destroy', $sardars->id], 'onsubmit' => 'return confirmDelete()' ]) !!}
-     
-                    <a href="{{route('admin.sardar.edit', ['id'=>Crypt::encrypt($sardars->id)]) }}" data-toggle="tooltip" class="btn btn-primary" title="Edit">Edit</a>
-                    <button  data-toggle="tooltip" class=" btn btn-danger"  title="Delete!">Delete</button>
+                     {!! Form::open(['method' => 'POST', 'route' => ['admin.employee.destroy', $employees->id], 'onsubmit' => 'return confirmDelete()' ]) !!}
+                     <a href="{{route('admin.employee.password', ['id'=>Crypt::encrypt($employees->id)]) }}" data-toggle="tooltip" class="btn btn-sm btn-success" title="Change Password">Change Password</a>
+                  
+                    <a href="{{route('admin.employee.edit', ['id'=>Crypt::encrypt($employees->id)]) }}" data-toggle="tooltip" class="btn btn-sm btn-primary" title="Edit">Edit</a>
+                    <button  data-toggle="tooltip" class=" btn btn-danger btn-sm"  title="Delete!">Delete</button>
                     {!! Form::close() !!}
                 
                     
