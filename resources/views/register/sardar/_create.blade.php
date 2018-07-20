@@ -1,7 +1,7 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
 {!! Form::label('Sardar *', '', array('class' => 'form-control-plaintext')) !!}
 
-      {!! Form::select('sardar_id', $sardar, null, ['class' => 'form-control required col-md-8', 'id' => 'sardar_id', 'placeholder' => 'Select Employee', 'required' => 'true', ]) !!}
+      {!! Form::select('sardar_id', $sardar, null, ['class' => 'form-control required col-md-8', 'id' => 'sardar_id', 'placeholder' => 'Select Sardar', 'required' => 'true', ]) !!}
     
     {!! $errors->first('sardar_id', '<span class="help-inline">:message</span>') !!}
 
