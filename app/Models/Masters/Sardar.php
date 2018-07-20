@@ -28,4 +28,8 @@ class Sardar extends Model
     public function mills(){
         return $this->belongsTo('App\Models\Masters\mill','mill_id');
     } 
+
+    public function sardars(){ 
+        return $this->hasMany('App\Models\Masters\Worker');  
+    }  
 }

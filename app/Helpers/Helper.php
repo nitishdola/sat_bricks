@@ -37,4 +37,17 @@ class Helper
         return DB::table('mills')->orderBy('name','asc')->where('status',1)->get();
         
     }
+    public static function allPaymentType($list = false)
+    { 
+        $list = array('1' => 'Per Month', '2' => 'Per Day');
+        return $list;
+        
+    }
+
+    public static function allEmployees($list = false)
+    {
+    	if($list) return DB::table('employees')->orderBy('name','asc')->where('status',1)->pluck('name','id');
+		return DB::table('employees')->orderBy('name','asc')->where('status',1)->get();
+        
+    }
 }

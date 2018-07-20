@@ -116,11 +116,11 @@
 					</ul>
 				</li>
 				<li>
-					<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-blog"></i><span class="hide-menu">Tables</span></a>
+					<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-blog"></i><span class="hide-menu">Register</span></a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="themes/quantum-pro/demos/demo6/tables-basic.html">Basic Tables</a></li>
-						<li><a href="themes/quantum-pro/demos/demo6/tables-data.html">Data Tables</a></li>
-					</ul>
+						<li><a href="{{ route('admin.register.sardar.entry') }}" >Sardar Dadoon</a></li>
+						<li><a href="{{ route('admin.register.employee.entry') }}" >Employee Dadoon</a></li>
+				 	</ul>
 				</li>
 				<li>
 					<a class="has-arrow " href="#" aria-expanded="false">
@@ -131,6 +131,7 @@
 
 
 						<li><a href="{{ route('admin.sardar.create') }}" >Sardars</a></li>
+						<li><a href="{{ route('admin.worker.create') }}"  >Workers</a></li>
 						<li><a href="{{ route('admin.employee.create') }}"  >Employees</a></li>
 							<!-- <ul aria-expanded="false" class="collapse">
 								<li><a href="{{ route('admin.sardar.create') }}">Add New Sardar</a></li>

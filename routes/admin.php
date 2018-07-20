@@ -11,7 +11,7 @@ Route::get('/home', function () {
 })->name('home');
  
 
-
+// Saradar Master========================================================
 Route::group(['prefix'=>'master'], function() {
     Route::group(['prefix'=>'sardar'], function() {
         Route::get('/create', [
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'master'], function() {
 }); 
 
 
-
+// Employee Master========================================================
 Route::group(['prefix'=>'master'], function() {
     Route::group(['prefix'=>'employee'], function() {
         Route::get('/create', [
@@ -98,3 +98,123 @@ Route::group(['prefix'=>'master'], function() {
     });
 }); 
 
+// Worker Master========================================================
+Route::group(['prefix'=>'master'], function() {
+    Route::group(['prefix'=>'worker'], function() {
+        Route::get('/create', [
+            'as' => 'worker.create',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@create'
+        ]);
+
+        Route::post('/store', [
+            'as' => 'worker.store',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@store'
+        ]);
+
+        Route::get('/', [
+            'as' => 'worker.index',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@index'
+        ]);
+        Route::post('/destroy/{id}', [
+            'as' => 'worker.destroy',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@destroy'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'worker.edit',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'worker.update',
+            'middleware' => ['admin'],
+            'uses' => 'Worker\WorkersController@update'
+        ]);
+    });
+}); 
+
+
+// Advance Register Employee========================================================
+Route::group(['prefix'=>'register'], function() { 
+    Route::group(['prefix'=>'employee'], function() {
+        Route::group(['prefix'=>'advance'], function() {
+            Route::get('/entry', [
+                'as' => 'register.employee.entry',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@create'
+            ]);
+
+            Route::post('/store', [
+                'as' => 'register.employee.store',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@store'
+            ]);
+
+            Route::get('/', [
+                'as' => 'register.employee.index',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@index'
+            ]);
+            Route::post('/destroy/{id}', [
+                'as' => 'register.employee.destroy',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@destroy'
+            ]);
+            Route::get('/edit/{id}', [
+                'as' => 'register.employee.edit',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@edit'
+            ]);
+            Route::post('/update/{id}', [
+                'as' => 'register.employee.update',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\AdvanceController@update'
+            ]);
+        }); 
+    }); 
+}); 
+
+
+
+// Advance Register Sardar========================================================
+Route::group(['prefix'=>'register'], function() { 
+    Route::group(['prefix'=>'sardar'], function() {
+        Route::group(['prefix'=>'advance'], function() {
+            Route::get('/entry', [
+                'as' => 'register.sardar.entry',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@create'
+            ]);
+
+            Route::post('/store', [
+                'as' => 'register.sardar.store',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@store'
+            ]);
+
+            Route::get('/', [
+                'as' => 'register.sardar.index',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@index'
+            ]);
+            Route::post('/destroy/{id}', [
+                'as' => 'register.sardar.destroy',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@destroy'
+            ]);
+            Route::get('/edit/{id}', [
+                'as' => 'register.sardar.edit',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@edit'
+            ]);
+            Route::post('/update/{id}', [
+                'as' => 'register.sardar.update',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\AdvanceController@update'
+            ]);
+        }); 
+    }); 
+}); 
