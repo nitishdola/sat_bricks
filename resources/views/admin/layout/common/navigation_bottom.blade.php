@@ -116,10 +116,10 @@
 					</ul>
 				</li>
 				<li>
-					<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-blog"></i><span class="hide-menu">Register</span></a>
+					<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-blog"></i><span class="hide-menu">দাদন/Advance</span></a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="{{ route('admin.register.sardar.entry') }}" >Sardar Dadoon</a></li>
-						<li><a href="{{ route('admin.register.employee.entry') }}" >Employee Dadoon</a></li>
+						<li><a href="{{ route('admin.register.sardar.entry') }}" >Sardar দাদন</a></li>
+						<li><a href="{{ route('admin.register.employee.entry') }}" >Employee Advance</a></li>
 				 	</ul>
 				</li>
 				<li>
