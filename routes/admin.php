@@ -218,3 +218,42 @@ Route::group(['prefix'=>'register'], function() {
         }); 
     }); 
 }); 
+
+
+// Accounting Ledger Master========================================================
+Route::group(['prefix'=>'master'], function() {
+    Route::group(['prefix'=>'ledger'], function() {
+        Route::get('/create', [
+            'as' => 'ledger.create',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@create'
+        ]);
+
+        Route::post('/store', [
+            'as' => 'ledger.store',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@store'
+        ]);
+
+        Route::get('/', [
+            'as' => 'ledger.index',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@index'
+        ]);
+        Route::post('/destroy/{id}', [
+            'as' => 'ledger.destroy',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@destroy'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'ledger.edit',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'ledger.update',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@update'
+        ]);
+    });
+}); 
