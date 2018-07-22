@@ -220,6 +220,27 @@ Route::group(['prefix'=>'register'], function() {
 }); 
 
 
+
+// Salary Register employee========================================================
+Route::group(['prefix'=>'register'], function() { 
+    Route::group(['prefix'=>'employee'], function() {
+        Route::group(['prefix'=>'salary'], function() {
+            Route::get('/create', [
+                'as' => 'register.employee.salary.create',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\SalaryController@create'
+            ]); 
+
+            Route::get('/', [
+                'as' => 'register.employee.salary.index',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Employees\SalaryController@index'
+            ]); 
+        }); 
+    }); 
+}); 
+
+
 // Accounting Ledger Master========================================================
 Route::group(['prefix'=>'master'], function() {
     Route::group(['prefix'=>'ledger'], function() {

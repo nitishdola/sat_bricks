@@ -18,7 +18,7 @@
 
     {!! Form::label('Date *', '', array('class' => 'form-control-plaintext')) !!}
         <div class="input-group date dp-years">
-            {!! Form::text('date', null , ['class' => 'form-control required col-md-3', 'id' => 'date', 'placeholder' => 'dd-mm-yyyy', 'required' => 'true', ]) !!}
+            {!! Form::text('date', null , ['class' => 'form-control required col-md-3 datepicker', 'id' => 'date', 'placeholder' => 'dd-mm-yyyy', 'required' => 'true', ]) !!}
             <span class="input-group-addon action">
             <i class="icon dripicons-calendar"></i>
             </span>
@@ -39,4 +39,8 @@
     
  
 </div>
- 
+<script type="text/javascript">
+    $('.datepicker').Zebra_DatePicker({
+        format: 'd-m-Y'
+    });
+</script>

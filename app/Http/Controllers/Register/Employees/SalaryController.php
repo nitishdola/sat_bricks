@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Masters\Employee; 
 use DB, Crypt, Helper, Validator, Redirect;
 
-class AdvanceController extends Controller
+class SalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +17,13 @@ class AdvanceController extends Controller
     public function index()
     {
         $navlink='2';
-        $urls1 = 'admin.register.employee.entry';
-        $urls2  =  'admin.register.employee.index';
+        $urls1 = 'admin.register.employee.salary.create';
+        $urls2  =  'admin.register.employee.salary.index';
         $link1 = 'Add';
         $link2 = 'View'; 
         $where = [];
          
-        return view('register.employee.view', compact('navlink','urls1','urls2','link1','link2')); 
- 
+        return view('register.employeesalary.view', compact('navlink','urls1','urls2','link1','link2')); 
     }
 
     /**
@@ -35,13 +34,14 @@ class AdvanceController extends Controller
     public function create()
     {
         $navlink='1';
-        $urls1 = 'admin.register.employee.entry';
-        $urls2  =  'admin.register.employee.index';
+        $urls1 = 'admin.register.employee.salary.create';
+        $urls2  =  'admin.register.employee.salary.index';
         $link1 = 'Add';
-        $link2 = 'View';  
+        $link2 = 'View'; 
+        $where = [];
         $employee  = Helper::allEmployees($list = true); 
-        return view("register.employee.entry", compact('employee','navlink','urls1','urls2','link1','link2')); 
- 
+       
+        return view('register.employeesalary.create', compact('employee','navlink','urls1','urls2','link1','link2')); 
     }
 
     /**

@@ -92,13 +92,14 @@
 	<!-- ================== GLOBAL APP SCRIPTS ==================-->
 	<script src="{{ asset('assets/js/global/app.js') }}"></script>
 	<!-- ================== PAGE LEVEL SCRIPTS ==================-->
+	<script src="{{ asset('assets/js/components/zebra_cal.js') }}" ></script>
+	<script src="{{ asset('assets/js/components/jquery-1.7.1.min.js') }}" ></script>
 	<script src="{{ asset('assets/js/cards/sessions-by-location.js') }}"></script>
 	<script src="{{ asset('assets/js/components/countUp-init.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/total-visits-chart.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/total-unique-visits-chart.js') }}"></script>
 	<script src="{{ asset('assets/js/cards/bar-chart-line-three.js') }}"></script>
-  	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script> 
-  	<script src="{{ asset('assets/js/components/bootstrap-datepicker-init.js') }}"></script> 
+  	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script>  
 	</body>
 </html>
 
