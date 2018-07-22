@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\EmployeeAuth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
+use Illuminate\Support\Facades\Input;
 
+use Redirect;   
 class LoginController extends Controller
 {
     /*
@@ -59,5 +61,15 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('employee');
+    }
+
+
+    public function login(Request $request)
+    {
+        if (Auth::guard('employee')->attempt(['mobile_number' => $request->mobile_number, 'password' => $request->password])) {
+            return Redirect::route('employee.home');
+        }else{
+            return Redirect::back()->with(['message' => 'Invalid username password'])->withInput(Input::all());
+        }
     }
 }

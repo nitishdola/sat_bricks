@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(SardarType::class);
         //$this->call(MillType::class);
 
-        DB::table('sardar_types')->insert(array(
+        /*DB::table('sardar_types')->insert(array(
                 array('name'=>'Heavy Duty'),
                 array('name'=>'Light Duty'),
             )
@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
                 array('name'=>'Mill 4'),
                 array('name'=>'main Mill'),
             )
-        );
+        );*/
+
+        $this->call(BrickType::class);
     }
 }

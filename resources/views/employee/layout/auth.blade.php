@@ -1,85 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel Multi Auth Guard') }}</title>
-
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SAT Employee Login </title>
+    <!-- ================== GOOGLE FONTS ==================-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+    <!-- ======================= GLOBAL VENDOR STYLES ========================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/metismenu/dist/metisMenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/switchery-npm/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
+    <!-- ======================= LINE AWESOME ICONS ===========================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/icons/line-awesome.min.css') }}">
+    <!-- ======================= DRIP ICONS ===================================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/icons/dripicons.min.css') }}">
+    <!-- ======================= MATERIAL DESIGN ICONIC FONTS =================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/icons/material-design-iconic-font.min.css') }}">
+    <!-- ======================= GLOBAL COMMON STYLES ============================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/common/main.bundle.css') }}">
+    <!-- ======================= LAYOUT STYLES ===========================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/core/main.css') }}">
+    <!-- ======================= MENU TYPE ===========================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/menu-type/auto-hide.css') }}">
+    <!-- ======================= THEME COLOR STYLES ===========================-->
+    <link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/themes/theme-j.css') }}">
 </head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/employee') }}">
-                    {{ config('app.name', 'Laravel Multi Auth Guard') }}: Employee
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/employee/login') }}">Login</a></li>
-                        <li><a href="{{ url('/employee/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/employee/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/employee/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    @yield('content')
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+<body class="layout-horizontal menu-auto-hide">
+    <div class="container">
+        @yield('main_content')
+    </div>
+    <!-- ================== GLOBAL VENDOR SCRIPTS ==================-->
+    <script src="{{ asset('assets/vendor/modernizr/modernizr.custom.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js-storage/js.storage.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js-cookie/src/js.cookie.js') }}"></script>
+    <script src="{{ asset('assets/vendor/pace/pace.js') }}"></script>
+    <script src="{{ asset('assets/vendor/metismenu/dist/metisMenu.js') }}"></script>
+    <script src="{{ asset('assets/vendor/switchery-npm/index.js') }}"></script>
+    <script src="{{ asset('assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <!-- ================== GLOBAL APP SCRIPTS ==================-->
+    <script src="{{ asset('assets/js/global/app.js') }}"></script>
 </body>
 </html>

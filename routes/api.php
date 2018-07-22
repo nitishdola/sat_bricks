@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/get-brick-type-data', 'REST\APIController@getBrickTypeData')->name('brick_type_data');

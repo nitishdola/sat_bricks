@@ -184,4 +184,8 @@ class EmployeesController extends Controller
         return Redirect::route('admin.employee.index')->with(['message' => $message, 'class' => $class]);
     }
 
+    public function home() {
+        return view('employees.home');
+    }
+
 }
