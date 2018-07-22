@@ -27,7 +27,7 @@ class AdvanceController extends Controller
         $link2 = 'View'; 
         $where = [];
         if($request->q) { 
-            $where[] = array('name', 'LIKE', trim($request->q).'%');
+            $where[] = array('sardars.name', 'LIKE', trim($request->q).'%');
         }
         $sardars = DB::table('vouchers')
         ->join('voucher_transactions', 'vouchers.id', '=', 'voucher_transactions.voucher_id')
@@ -36,6 +36,7 @@ class AdvanceController extends Controller
         ->join('sardars', 'sardars.id', '=', 'sardar_advances.sardar_id')
         ->select('vouchers.id','vouchers.date', 'vouchers.remarks', 'ledgers.name as ledger_name', 'voucher_transactions.cr',  'voucher_transactions.dr', 'sardars.name as sardar_name')
         ->where('vouchers.status',1)->where('voucher_transactions.status',1)->where('sardar_advances.status',1)
+        ->where($where)
         ->orderby('vouchers.date','desc')
         ->get();
         

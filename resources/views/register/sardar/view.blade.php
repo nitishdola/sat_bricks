@@ -33,7 +33,7 @@
         <div class="card"> 
         <div class="card-body">  
 @include('includes.inner_nav')  
-{!! Form::open(['method' => 'GET', 'route' => ['admin.sardar.index']]) !!}
+{!! Form::open(['method' => 'GET', 'route' => ['admin.register.sardar.index']]) !!}
      
               {{ csrf_field() }} 
                     <div class="row">
@@ -69,7 +69,7 @@
                 </th> 
                 <th></th>
                 </tr>
-
+                <?php   $total =0 ?>
                 @if(count($sardars) > 0)
                 @foreach($sardars as $sardars)
                 <tr>
@@ -84,6 +84,7 @@
                 </td>
                 <td>
                 {{$sardars->cr}}
+                <?php   $total +=$sardars->cr   ?>
                 </td>
                 <td>
                 {{$sardars->remarks}}
@@ -93,6 +94,13 @@
                 </tr>
                 @endforeach
                 @endif
+                <tr>
+                <td></td>
+                <td></td>
+                <td align="right"><h4>Total</h4></td>
+                <td><h4>{{number_format($total,2, '.', '') }}</h4></td>
+                <td></td>
+                </tr>
                 </table>
             
             </div>  
