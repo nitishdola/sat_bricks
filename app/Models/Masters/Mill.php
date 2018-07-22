@@ -16,6 +16,6 @@ class Mill extends Model
     ];
      public function sardars()
     {
-        return $this->hasMany('App\Models\Masters\Sardars'); 
+        return $this->hasMany('App\Models\Masters\Sardar'); 
 	}
 }

@@ -183,8 +183,8 @@ Route::group(['prefix'=>'register'], function() {
 Route::group(['prefix'=>'register'], function() { 
     Route::group(['prefix'=>'sardar'], function() {
         Route::group(['prefix'=>'advance'], function() {
-            Route::get('/entry', [
-                'as' => 'register.sardar.entry',
+            Route::get('/create', [
+                'as' => 'register.sardar.create',
                 'middleware' => ['admin'],
                 'uses' => 'Register\Sardars\AdvanceController@create'
             ]);

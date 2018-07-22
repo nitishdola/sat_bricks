@@ -97,8 +97,8 @@
   	<script src="{{ asset('assets/js/cards/total-visits-chart.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/total-unique-visits-chart.js') }}"></script>
 	<script src="{{ asset('assets/js/cards/bar-chart-line-three.js') }}"></script>
-  	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script>
-		
+  	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script> 
+  	<script src="{{ asset('assets/js/components/bootstrap-datepicker-init.js') }}"></script> 
 	</body>
 </html>
 
