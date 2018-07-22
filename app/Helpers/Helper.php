@@ -108,6 +108,31 @@ class Helper
         "." . $words[$point / 10] . " " . 
               $words[$point = $point % 10] : '';
       return ucfirst($result) . "Rupees  ";
- 
+    }
+
+    public static function allRegisters($list = false)
+    {
+    	if($list) return DB::table('registers')->orderBy('name','asc')->pluck('name','id');
+		return DB::table('registers')->orderBy('name','asc')->get();
+        
+    }
+
+    public static function allAccountHeads($list = false)
+    {
+    	if($list) return DB::table('accounts_heads')->orderBy('name','asc')->pluck('name','id');
+		return DB::table('accounts_heads')->orderBy('name','asc')->get();
+        
+    }
+    public static function allLedger($list = false)
+    {
+        if($list) return DB::table('ledgers')->orderBy('name','asc')->where('status',1)->pluck('name','id');
+		return DB::table('ledgers')->orderBy('name','asc')->where('status',1)->get();
+        
+    }
+    public static function allCashLedger($list = false)
+    {
+    	if($list) return DB::table('ledgers')->orderBy('name','asc')->where('status',1)->where('cash_ledger',1)->pluck('name','id');
+		return DB::table('ledgers')->orderBy('name','asc')->where('status',1)->where('cash_ledger',1)->get();
+        
     }
 }

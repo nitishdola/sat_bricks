@@ -4,9 +4,9 @@ namespace App\Models\Masters;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mill extends Model
+class AccountsHead extends Model
 {
-    protected $table = 'mills';
+    protected $table = 'accounts_heads';
     public $primaryKey = 'id';
     public $timestamps =true;
     protected $fillable 	= array('name'); 
@@ -14,8 +14,8 @@ class Mill extends Model
     public static $rules 	= [
     	'name' 				=> 'required',
     ];
-     public function sardars()
+     public function ledgers()
     {
-        return $this->hasMany('App\Models\Masters\Sardar'); 
+        return $this->hasMany('App\Models\Masters\Ledger'); 
 	}
 }

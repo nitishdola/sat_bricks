@@ -118,7 +118,7 @@
 				<li>
 					<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-blog"></i><span class="hide-menu">দাদন/Advance</span></a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="{{ route('admin.register.sardar.entry') }}" >Sardar দাদন</a></li>
+						<li><a href="{{ route('admin.register.sardar.create') }}" >Sardar দাদন</a></li>
 						<li><a href="{{ route('admin.register.employee.entry') }}" >Employee Advance</a></li>
 				 	</ul>
 				</li>
@@ -133,6 +133,7 @@
 						<li><a href="{{ route('admin.sardar.create') }}" >Sardars</a></li>
 						<li><a href="{{ route('admin.worker.create') }}"  >Workers</a></li>
 						<li><a href="{{ route('admin.employee.create') }}"  >Employees</a></li>
+						<li><a href="{{ route('admin.ledger.create') }}"  >Ledgers</a></li>
 							<!-- <ul aria-expanded="false" class="collapse">
 								<li><a href="{{ route('admin.sardar.create') }}">Add New Sardar</a></li>
 								<li><a href="{{ route('admin.sardar.index') }}">View All Sardars</a></li>
