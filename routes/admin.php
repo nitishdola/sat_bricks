@@ -46,6 +46,7 @@ Route::group(['prefix'=>'master'], function() {
             'middleware' => ['admin'],
             'uses' => 'Sardar\MasterController@update'
         ]);
+
     });
 }); 
 
@@ -135,6 +136,28 @@ Route::group(['prefix'=>'master'], function() {
         ]);
     });
 }); 
+
+
+////worker salary
+Route::group(['prefix'=>'worker'], function() {
+    Route::get('/salary', [
+        'as' => 'sardar.worker.salary.add',
+        'middleware' => ['admin'],
+        'uses' => 'Sardar\WorkersController@addSalary'
+    ]);
+
+    Route::post('/salary', [
+        'as' => 'sardar.worker.salary.save',
+        'middleware' => ['admin'],
+        'uses' => 'Sardar\WorkersController@saveSalary'
+    ]);
+
+    Route::get('/view_all', [
+        'as' => 'sardar.worker.salary.view_all',
+        'middleware' => ['admin'],
+        'uses' => 'Sardar\WorkersController@viewAllSalary'
+    ]);
+});
 
 
 // Advance Register Employee========================================================

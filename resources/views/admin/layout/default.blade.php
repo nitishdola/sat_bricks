@@ -19,6 +19,8 @@
 	<!-- ======================= MATERIAL DESIGN ICONIC FONTS =================-->
 	<link rel="stylesheet" href="{{ asset('assets/css/icons/material-design-iconic-font.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.10/css/bootstrap/zebra_datepicker.min.css">
 	
 	<!-- ======================= PAGE VENDOR STYLES ===========================-->
 	<link rel="stylesheet" href="{{ asset('assets/vendor/jvectormap-next/jquery-jvectormap.css') }}">
@@ -32,6 +34,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/themes/theme-j.css') }}">
 	<!-- ======================= USER DEFINE STYLE ===========================-->
 	<link rel="stylesheet" href="{{ asset('assets/css/common/mystyle.css') }}">
+
+	@yield('pageCss')
 </head>
 
 
@@ -102,6 +106,13 @@
   	<script src="{{ asset('assets/js/cards/total-unique-visits-chart.js') }}"></script>
 	<script src="{{ asset('assets/js/cards/bar-chart-line-three.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script>  
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.10/zebra_datepicker.min.js"></script>
+  	<script>
+  		$('.pick-a-date').Zebra_DatePicker({
+		    format: 'd-m-Y'
+		});
+  	</script>
+  	@yield('pageJs')
 	</body>
 </html>
 
