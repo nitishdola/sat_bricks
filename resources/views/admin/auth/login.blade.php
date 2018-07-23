@@ -26,8 +26,8 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
             </div>
-            <button class="btn btn-primary btn-rounded btn-floating btn-block" type="submit">Sign In</button><!-- 
-         <p class="text-muted m-t-25 m-b-0 p-0">Don't have an account yet?<a href="../../../../themes/quantum-pro/demos/demo6/auth-register.html"> Create an account</a></p> -->
+            <button class="btn btn-primary btn-rounded btn-floating btn-block" type="submit">Sign In</button>
+         <p class="text-muted m-t-25 m-b-0 p-0"><a href="{{ route('employee.login') }}"> Login as Employee</a></p>
         </div>
     </div>
 {!! Form::close() !!}
