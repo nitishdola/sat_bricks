@@ -66,13 +66,27 @@
       </td>
 
     </tr>
-    @endfor
+    @endfor 
   </tbody>
 
   <tfoot>
     <tr>
-      <th colspan="5">Total Cost</th>
+      <th colspan="5"><span class="pull-right">Total Cost</span></th>
       <th id="consTotalAmnt"></th>
     </tr>
+    <tr>
+      <th colspan="5" align="right">
+       <span class="pull-right"> Amount Paid by the Customer</span>
+      </th>
+      <td>
+      {!! Form::text('amount_paid', null , ['class' => 'form-control', 'id' => 'amount_paid','onkeyup' => 'calculateBalAmt()', 'placeholder' => 'Amount Paid', 'required' => 'true', ]) !!}
+    
+      </td>
+    </tr>
+    <tr>
+      <th colspan="5"><span class="pull-right">Balance</span></th>
+      <th id="consBalAmnt"></th>
+    </tr>
+    <tr>
   </tfoot>
 </table>

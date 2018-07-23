@@ -79,6 +79,15 @@ class AdvanceController extends Controller
         $voucher['voucher_type']=1;
         $voucher['remarks'] = $data['remarks'];
 
+        $last_voucher_data = Voucher::whereStatus(1)->orderBy('voucher_number', 'DESC')->first();
+
+        $new_voucher_number = 1;
+
+        if($last_voucher_data) {
+            $new_voucher_number = ($last_voucher_data->voucher_number) + 1;
+        }
+
+        $voucher['voucher_number']  = $new_voucher_number; 
         $validator = Validator::make($data, Voucher::$rules);
         if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
         $result = Voucher::create($voucher); //INSERT VOUCHER TABLE

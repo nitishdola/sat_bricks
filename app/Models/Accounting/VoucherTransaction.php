@@ -15,4 +15,9 @@ class VoucherTransaction extends Model
         'cr' 				=> "required|regex:/^\d*(\.\d{1,2})?$/",    
         'dr' 				=> "required|regex:/^\d*(\.\d{1,2})?$/",    
     ]; 
+
+    public function vouchers()
+    {
+        return $this->belongsTo('App\Models\Accounting\Voucher', 'voucher_id'); 
+	}
 }

@@ -57,6 +57,7 @@
                                 ?>
                                 <td>{{ number_format((float)$invoice_cost, 2, '.', '')  }}</td>
                                 <td><a class="btn btn-success btn-sm" href="{{ route('employee.receipt.view', Crypt::encrypt($v->id)) }}" target="_blank"> View Details</a></td>
+                            
                             </tr>
                         @endforeach
                     </tbody>

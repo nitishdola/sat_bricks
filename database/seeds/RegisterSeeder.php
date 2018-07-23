@@ -12,9 +12,12 @@ class RegisterSeeder extends Seeder
     public function run()
     {
         DB::table('registers')->insert(array(
-	      		array('name'=>'Sardar Advance'),
-	      		array('name'=>'Employee Advance'),
-	      		array('name'=>'Salary'), 
+	      		array('name'=>'Sardars Advance'),
+	      		array('name'=>'Employees Advance'),
+	      		array('name'=>'Sales Register'), 
+	      		array('name'=>'Employees Salary'), 
+	      		array('name'=>'Sardars Salary'), 
+	      		array('name'=>'Workers Salary'), 
 	  		)
     	);
     }
