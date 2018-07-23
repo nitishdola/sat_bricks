@@ -93,6 +93,21 @@ calculateTotalCost = function(key) {
         }
     });
     $('#consTotalAmnt').text(consoTtl.toFixed(2));
+    $('#amount_paid').val(consoTtl.toFixed(2));  
+    $('#consBalAmnt').text('0.00');
+
+}
+
+calculateBalAmt = function(key) { 
+    paid = $('#amount_paid').val(); 
+    consoTtl = 0;
+    $('.brick-total-cost').each(function (j, x) {
+        if($(this).val() != '') {
+            consoTtl += parseFloat($(this).val());
+        }
+    }); 
+    consoBal =consoTtl-paid;
+    $('#consBalAmnt').text(consoBal.toFixed(2)); 
 
 }
 

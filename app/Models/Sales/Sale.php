@@ -8,7 +8,7 @@ class Sale extends Model
 {
     protected $table 		= 'sales';
 
-    public $fillable 	= array('employee_id', 'customer_id', 'discount', 'gst', 'invoice_date', 'invoice_number', ); 
+    public $fillable 	= array('employee_id', 'customer_id', 'discount', 'gst', 'invoice_date', 'invoice_number','voucher_id', ); 
     public $guarded   	= ['_token'];
     public static $rules 	= [
         'employee_id'       => 'required|exists:employees,id',
