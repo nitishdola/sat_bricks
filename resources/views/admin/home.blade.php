@@ -18,62 +18,22 @@
 
 <section class="page-content">
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-12">
             <div class="card">
-                <h5 class="card-header p-t-25 p-b-20"><span class="">Traffic Sources</span></h5>
-                <div class="card-toolbar top-right">
-                    <ul class="nav nav-pills nav-pills-primary justify-content-end" id="pills-demo-1" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">Week</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">Month</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">Year</a>
-                        </li>
-                    </ul>
-                </div>
+                <h5 class="card-header p-t-25 p-b-20"><span class="">LIST OF UNPAID CUSTOMERS</span></h5>
+                
                 <div class="card-body">
-                    <div class="tab-content" id="pills-tabContent-1">
-                        <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1">
-                            <ul class="list-reset list-inline-block m-b-15">
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-info badge-circle w-10 h-10 m-r-10"></i>Direct</span>
-                                </li>
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-success badge-circle w-10 h-10 m-r-10"></i>Referral</span>
-                                </li>
-                            </ul>
-                            <div class="ct-chart" id="traffic-week" style="height: 350px;"></div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2">
-                            <ul class="list-reset list-inline-block m-b-15">
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-info badge-circle w-10 h-10 m-r-10"></i>Direct</span>
-                                </li>
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-success badge-circle w-10 h-10 m-r-10"></i>Referral</span>
-                                </li>
-                            </ul>
-                            <div class="ct-chart" id="traffic-month" style="height: 350px;"></div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3">
-                            <ul class="list-reset list-inline-block m-b-15">
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-info badge-circle w-10 h-10 m-r-10"></i>Direct</span>
-                                </li>
-                                <li class="m-r-5">
-                                    <span><i class="badge badge-success badge-circle w-10 h-10 m-r-10"></i>Referral</span>
-                                </li>
-                            </ul>
-                            <div class="ct-chart" id="traffic-year" style="height: 350px;"></div>
-                        </div>
-                    </div>
+                    <div class="notice error"><p>Tridib Kakoty. Hajo. Ph - 98765433332 | <strong>Amount : 98000.00</strong></p></div>
+
+                    <div class="notice error"><p>Khairul Islam. Suwalkuchi. Ph - 9234234234 | <strong>Amount : 800.00</strong></p></div>
+
+                    <div class="notice error"><p>Hafiz Ali. Guwahati. Ph - 3453453453 | <strong>Amount : 18000.00</strong></p></div>
+
+                    <div class="notice error"><p>Al Amin. Hajo. Ph - 34534534534 | <strong>Amount : 100000.00</strong></p></div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-12">
             <div class="card bg-primary" id="totalVisitsChart">
                 <div class="card-body p-0">
                     <div class="card-toolbar top-right">
@@ -89,7 +49,7 @@
                             </li>
                         </ul>
                     </div>
-                    <h5 class="card-title border-none text-white p-l-20 p-t-20 m-b-0">Total Visits</h5>
+                    <h5 class="card-title border-none text-white p-l-20 p-t-20 m-b-0">Total Dadon Advances</h5>
                     <div class="tab-content" id="total-visits-tab-content">
                         <div class="tab-pane fade show active" id="total-visits-tab-1" role="tabpanel" aria-labelledby="total-visits-tab-1">
                             <span class="card-title text-white font-size-40 font-w-300 p-l-20 counter" data-count="3233">0</span>
@@ -119,7 +79,7 @@
                             </li>
                         </ul>
                     </div>
-                    <h5 class="card-title border-none text-white p-l-20 p-t-20  m-b-0">Unique Visits</h5>
+                    <h5 class="card-title border-none text-white p-l-20 p-t-20  m-b-0">Sales Report</h5>
                     <div class="tab-content" id="total-uniquevisits-tab-content">
                         <div class="tab-pane fade show active" id="total-uniquevisits-tab-1" role="tabpanel" aria-labelledby="total-uniquevisits-tab-1">
                             <span class="card-title text-white font-size-40 font-w-300 p-l-20 counter" data-count="1943">0</span>
@@ -139,3 +99,69 @@
 </section>
                 
 @endsection
+
+@section('pageCss')
+<style>
+.notice {
+  position: relative;
+  margin: 1em;
+  background: #F9F9F9;
+  padding: 1em 1em 1em 2em;
+  border-left: 4px solid #DDD;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+}
+
+.notice:before {
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: -17px;
+  background-color: #DDD;
+  color: #FFF;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  font-family: Georgia;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  border-color: #0074D9;
+}
+
+.info:before {
+  content: "i";
+  background-color: #0074D9;
+}
+
+.success {
+  border-color: #2ECC40;
+}
+
+.success:before {
+  content: "√";
+  background-color: #2ECC40;
+}
+
+.warning {
+  border-color: #FFDC00;
+}
+
+.warning:before {
+  content: "!";
+  background-color: #FFDC00;
+}
+
+.error {
+  border-color: #FF4136;
+}
+
+.error:before {
+  content: "X";
+  background-color: #FF4136;
+}
+</style>
+@stop
