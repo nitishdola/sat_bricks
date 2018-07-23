@@ -12,6 +12,8 @@ class VoucherTransaction extends Model
     protected $fillable 	= array('voucher_id','ledger_id','cr','dr'); 
     protected $guarded   	= ['_token'];
     public static $rules 	= [ 
+        'voucher_id' 	    => 'required|exists:vouchers,id', 
+        'ledger_id' 	    => 'required|exists:ledgers,id', 
         'cr' 				=> "required|regex:/^\d*(\.\d{1,2})?$/",    
         'dr' 				=> "required|regex:/^\d*(\.\d{1,2})?$/",    
     ]; 
