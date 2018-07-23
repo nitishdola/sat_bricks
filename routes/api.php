@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/get-brick-type-data', 'REST\APIController@getBrickTypeData')->name('brick_type_data');
+Route::get('/all-sardar-workers-data', 'REST\APIController@getSardarWorkersData')->name('api.sardar_worker_data');

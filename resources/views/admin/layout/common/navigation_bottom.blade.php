@@ -19,7 +19,8 @@
 					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-to-do"></i><span class="hide-menu">Salary</span></a>
 					<ul aria-expanded="false" class="collapse">
 					<li><a href="{{ route('admin.register.employee.salary.create') }}" >Employee Salary</a></li>
-					
+					<li><a href="{{ route('admin.sardar.worker.salary.add') }}" >Sardar Worker Salary</a></li>
+						
 					</ul>
 				</li>
 				<li>
