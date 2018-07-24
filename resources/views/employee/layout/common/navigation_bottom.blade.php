@@ -13,7 +13,7 @@
 					<ul aria-expanded="false" class="collapse">
 						<li><a href="{{ route('employee.receipt.create') }}">Create Receipt</a></li>
 						<li><a href="{{ route('employee.receipt.view_all') }}">View All Sales Report</a></li>
-						<li><a href="themes/quantum-pro/demos/demo6/pages-search.html">Ledger</a></li>
+					 
 					</ul>
 				</li>
 				
