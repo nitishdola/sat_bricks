@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
                 
-            <h5 class="sign-in-heading text-center m-b-20">Sign in to your account</h5>
+            <h5 class="sign-in-heading text-center m-b-20">Sign in as ADMIN</h5>
 
             @if(Session::has('message'))
             <div class="row">
