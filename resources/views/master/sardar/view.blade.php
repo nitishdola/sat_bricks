@@ -71,6 +71,7 @@
                 Mill
                 </th>
                 <th></th>
+                <th></th>
                 </tr>
 
                 @if(count($sardars) > 0)
@@ -93,6 +94,13 @@
                 </td>
                 <td>
                 {{$sardars->mills->name}}
+                </td>
+                <td align="center">  
+                    <a href="{{route('admin.worker.index', ['sardar'=> $sardars->id ]) }}" data-toggle="tooltip" class="btn btn-info btn-sm" title="Workers Details">Workers</a>
+                    <a href="{{route('admin.register.sardar.index', ['sardar_id'=> $sardars->id ]) }}" data-toggle="tooltip" class="btn btn-info btn-sm" title="Advance Details">Advances/দাদন</a>
+                    
+                
+                    
                 </td>
                 <td align="center">  
                      {!! Form::open(['method' => 'POST', 'route' => ['admin.sardar.destroy', $sardars->id], 'onsubmit' => 'return confirmDelete()' ]) !!}

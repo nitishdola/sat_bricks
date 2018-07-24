@@ -10,7 +10,8 @@ use App\Models\Sales\Sale, App\Models\Sales\SaleItem;
 use App\Models\Masters\Ledger; 
 use App\Models\Accounting\Voucher; 
 use App\Models\Accounting\VoucherTransaction; 
-use DB, Crypt, Helper, Validator, Redirect, Auth;
+use App\Helpers\VoucherHelper; 
+use DB, Crypt, Helper, Validator, Redirect, Auth ;
 class SalesController extends Controller
 {
     public function createReceipt() {
@@ -28,36 +29,19 @@ class SalesController extends Controller
         	}else{
         		$customer_data['name'] 			= $request->name;
         		$customer_data['address'] 		= $request->address;
-        		$customer_data['mobile_number'] = $request->mobile_number;
-
-        		$customer = Customer::create($customer_data);
-
+        		$customer_data['mobile_number'] = $request->mobile_number; 
+        		$customer = Customer::create($customer_data); 
         		$data['customer_id'] = $customer->id;
-            }
-            
-            //Voucher Entry
-            $ledger = Ledger::where('register',3)->first(); 
-            $voucher['date'] =  date('Y-m-d'); 
-            $voucher['voucher_type']=1;
-            $voucher['remarks'] = "Sales Entry"; 
-            $last_voucher_data = Voucher::whereStatus(1)->orderBy('voucher_number', 'DESC')->first(); 
-            $new_voucher_number = 1; 
-            if($last_voucher_data) {
-                $new_voucher_number = ($last_voucher_data->voucher_number) + 1;
             } 
-            $voucher['voucher_number']  = $new_voucher_number;  
-            $validator = Validator::make($voucher, Voucher::$rules);
-            if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
-            $result = Voucher::create($voucher); //INSERT VOUCHER TABLE
+            //Voucher Entry 
+            $ledger = Ledger::where('register',3)->first();  
+            $result = VoucherHelper::voucher(date('Y-m-d'), 2, "Sales Entry"); 
             if($result) 
             { 
-                $item_cost = 0;
-                
+                $item_cost = 0; 
                 $brick_type_ids = $request->brick_type_ids;
                 $unit_costs     = $request->unit_costs;
-                $quantities     = $request->quantities;
-
-                
+                $quantities     = $request->quantities; 
                 for($indx = 0; $indx < count($request->brick_type_ids); $indx++) {
                     if($brick_type_ids[$indx] != '') { 
                         $item_cost      += $quantities[$indx]*$unit_costs[$indx];
@@ -65,49 +49,22 @@ class SalesController extends Controller
                 }
                 $id = $result->id; 
                 $paid_amt= $data['amount_paid'];
-                $bal =   $item_cost -  $paid_amt;
-                $val['cr']  = $paid_amt;
-                $val['dr']  = $item_cost;
-              //  $validator = Validator::make($val, Voucher::$rules);
-              //  if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
-
+                $bal =   $item_cost -  $paid_amt; 
                 if($paid_amt > 0)
-                {
-                    $val['voucher_id'] =  $id; 
-                    $val['ledger_id']= 2;  // Add Amount to Cash in Hand / bank// ***************change later
-                    $val['cr'] = $paid_amt; 
-                    $val['dr'] = 0; 
-                    
-                    $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY
-               
+                { 
+                    $result = VoucherHelper::vouchertrans($id, 2, $paid_amt, '0' ); // Add Amount to Cash in Hand / bank// ***************change later
                 }
                 if($bal > 0)
-                {
-                    $val['voucher_id'] =  $id; 
-                    $val['ledger_id']= 1;  // Amount cr to Credit Balance  
-                    $val['cr'] =  $bal; 
-                    $val['dr'] = 0;  
-                    $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY
-               
+                { 
+                    $result = VoucherHelper::vouchertrans($id, 1, $bal, '0' ); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY
                 }
                 if($bal < 0)
-                {
-                    $val['voucher_id'] =  $id; 
-                    $val['ledger_id']= 1;  // Amount dr to more than bill amount
-                    $val['cr'] = 0; 
-                    $val['dr'] = -$bal;
-                    $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY             
-                }
-                
+                { 
+                    $result = VoucherHelper::vouchertrans($id, 1, '0', $bal ); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY
+                } 
                 if($result) 
-                {            
-                    //voucher id
-                    $val['voucher_id'] =  $id; 
-                    $val['ledger_id']= $ledger->id;
-                    $val['cr'] = 0;
-                    $val['dr'] = $item_cost;
-                    
-                    $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE SECOND ENTRY
+                {             
+                    $result = VoucherHelper::vouchertrans($id, $ledger->id, '0', $item_cost ); //INSERT VOUCHER TRANSACTION TABLE SECOND ENTRY
                     if($result) 
                     {
                         //voucher id
@@ -129,12 +86,8 @@ class SalesController extends Controller
 
                         $validator = Validator::make($data, Sale::$rules);
                         if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
-
-
-                        $sale = Sale::create($data);
-
-
-
+ 
+                        $sale = Sale::create($data); 
                         for($indx = 0; $indx < count($request->brick_type_ids); $indx++) {
                             if($brick_type_ids[$indx] != '') {
                                 $items_data = [];

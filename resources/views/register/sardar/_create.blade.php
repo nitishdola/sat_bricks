@@ -17,12 +17,10 @@
 <div class="form-group {{ $errors->has('date') ? 'has-error' : ''}}">
 
     {!! Form::label('Date *', '', array('class' => 'form-control-plaintext')) !!}
-        <div class="input-group date dp-years">
-            {!! Form::text('date', null , ['class' => 'form-control required col-md-3 datepicker', 'id' => 'date', 'placeholder' => 'dd-mm-yyyy', 'required' => 'true', ]) !!}
-            <span class="input-group-addon action">
-            <i class="icon dripicons-calendar"></i>
-            </span>
-         </div>
+        <div class="col-md-4"> 
+          {!! Form::text('date', null , ['class' => 'form-control required col-md-12 pick-a-date', 'id' => 'date', 'placeholder' => 'dd-mm-yyyy', 'required' => 'true', ]) !!}
+        </div>      
+     
     {!! $errors->first('date', '<span class="help-inline">:message</span>') !!}
 </div>
 <div class="form-group {{ $errors->has('ledger') ? 'has-error' : ''}}">
@@ -35,12 +33,7 @@
 <div class="form-group {{ $errors->has('remarks') ? 'has-error' : ''}}">
     {!! Form::label('Remarks', '', array('class' => 'form-control-plaintext')) !!}
 
-      {!! Form::textarea('remarks', null, ['class' => 'form-control required col-md-8', 'id' => 'remarks', 'placeholder' => 'Remarks',  'rows' => 5 ]) !!}
+    {!! Form::textarea('remarks', null, ['class' => 'form-control required col-md-8', 'id' => 'remarks', 'placeholder' => 'Remarks',  'rows' => 5 ]) !!}
     
  
-</div>
-<script type="text/javascript">
-    $('.datepicker').Zebra_DatePicker({
-        format: 'd-m-Y'
-    });
-</script>
+</div> 

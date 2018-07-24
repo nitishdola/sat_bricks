@@ -66,6 +66,7 @@
                         <tr>
                             <th colspan="4"> TOTAL</th>
                             <th>{{ number_format((float)$ttl_inv_cost, 2, '.', '')  }}</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                 </table>

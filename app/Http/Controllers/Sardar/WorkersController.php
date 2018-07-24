@@ -10,7 +10,7 @@ use DB, Crypt, Helper, Validator, Redirect;
 class WorkersController extends Controller
 {
     public function addSalary() {
-    	$navlink 	= '2';
+    	$navlink 	= '1';
         $urls1 		= 'admin.sardar.worker.salary.add';
         $urls2  	= 'admin.sardar.worker.salary.view_all';
         $link1 		= 'Add';
