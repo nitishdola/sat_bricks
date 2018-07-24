@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
             )
         );*/
 
-        $this->call(BrickType::class);
+        //$this->call(BrickType::class);
     }
 }
