@@ -37,11 +37,10 @@
      
               {{ csrf_field() }} 
                     <div class="row">
-                        <div class="col-md-12  mg-1">
-                            <div class="form-group input-group col-md-3">
-                                <input type="text" placeholder="Search by Name"
-                                    name="q" autocomplete="off" class="form-control " value="{{ $request->q }}"    >
-                                <span class="input-group-btn">
+                        <div class="col-md-12  mg-1"> 
+                            <div class="form-group input-group col-md-4">
+                            {!! Form::select('sardar_id', $sardar_list, $request->sardar_id, ['class' => 'form-control', 'id' => 'sardar', 'placeholder' => 'Select Sardar',  ]) !!}
+                               <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit" data-toggle="tooltip"   title="Search!"><i class="icon dripicons-search" style="color:#fff" ></i>
                                 </button></span>
                             </div>
@@ -99,6 +98,7 @@
                 <td></td>
                 <td align="right"><h4>Total</h4></td>
                 <td><h4>{{number_format($total,2, '.', '') }}</h4></td>
+                <td></td>
                 <td></td>
                 </tr>
                 </table>

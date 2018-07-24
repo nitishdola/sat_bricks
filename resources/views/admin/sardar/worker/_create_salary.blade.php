@@ -53,8 +53,8 @@
 <div class="form-group {{ $errors->has('mobile_number') ? 'has-error' : ''}}">
     {!! Form::label('Salary Date *', '', array('class' => 'form-control-plaintext')) !!}
         <div class="col-md-4"> 
-         {!! Form::text('date', null , ['class' => 'form-control required col-md-12 pick-a-date', 'id' => 'amount', 'placeholder' => 'dd/mm/yyyy', 'required' => 'true', ]) !!}
-     </div>
+         {!! Form::text('date', null , ['class' => 'form-control required col-md-12 pick-a-date', 'id' => 'amount', 'placeholder' => 'dd-mm-yyyy', 'required' => 'true', ]) !!}
+        </div>
     
     {!! $errors->first('date', '<span class="help-inline">:message</span>') !!}
 </div>

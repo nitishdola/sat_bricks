@@ -35,7 +35,7 @@ class SalaryController extends Controller
     {
         $navlink='1';
         $urls1 = 'admin.register.employee.salary.create';
-        $urls2  =  'admin.register.employee.salary.index';
+        $urls2  = 'admin.register.employee.salary.index';
         $link1 = 'Add';
         $link2 = 'View'; 
         $where = [];

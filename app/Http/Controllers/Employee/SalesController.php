@@ -35,7 +35,7 @@ class SalesController extends Controller
             } 
             //Voucher Entry 
             $ledger = Ledger::where('register',3)->first();  
-            $result = VoucherHelper::voucher(date('Y-m-d'), 1, "Sales Entry"); 
+            $result = VoucherHelper::voucher(date('Y-m-d'), 2, "Sales Entry"); 
             if($result) 
             { 
                 $item_cost = 0; 

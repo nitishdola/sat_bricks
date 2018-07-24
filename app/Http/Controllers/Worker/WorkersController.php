@@ -27,12 +27,17 @@ class WorkersController extends Controller
         $link1 = 'Add';
         $link2 = 'View'; 
         $where = [];
+        $search = [];
         if($request->q) { 
             $where[] = array('name', 'LIKE', trim($request->q).'%');
         }
-        $worker = Worker::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
+        if($request->sardar) { 
+            $search[] = array('sardar_id', $request->sardar);
+        }
+        $sardar  = Helper::allSardars($list = true);
+        $worker = Worker::where('status','1')->where($where)->where($search)->orderBy('name', 'asc')->paginate(20); 
         
-        return view('master.worker.view', compact('worker','request','navlink','urls1','urls2','link1','link2')); 
+        return view('master.worker.view', compact('worker','sardar','request','navlink','urls1','urls2','link1','link2')); 
   
     }
 

@@ -38,10 +38,11 @@
               {{ csrf_field() }} 
                     <div class="row">
                         <div class="col-md-12  mg-1">
-                            <div class="form-group input-group col-md-3">
-                                <input type="text" placeholder="Search by Name"
-                                    name="q" autocomplete="off" class="form-control " value="{{ $request->q }}"    >
-                                <span class="input-group-btn">
+                            <div class="form-group input-group col-md-8">
+                            {!! Form::select('sardar', $sardar, $request->sardar, ['class' => 'form-control', 'id' => 'sardar', 'placeholder' => 'Select Sardar',  ]) !!}
+  
+                            {!! Form::text('q', $request->q , ['class' => 'form-control', 'id' => 'q', 'placeholder' => 'Search by Worker Name',  ]) !!}
+                            <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit" data-toggle="tooltip"   title="Search!"><i class="icon dripicons-search" style="color:#fff" ></i>
                                 </button></span>
                             </div>

@@ -9,6 +9,7 @@ use App\Models\Masters\Ledger;
 use App\Models\Accounting\SardarAdvance; 
 use App\Models\Accounting\Voucher; 
 use App\Models\Accounting\VoucherTransaction; 
+use App\Helpers\VoucherHelper; 
 use DB, Crypt, Helper, Validator, Redirect;
 
 class AdvanceController extends Controller
@@ -26,8 +27,8 @@ class AdvanceController extends Controller
         $link1 = 'Add';
         $link2 = 'View'; 
         $where = [];
-        if($request->q) { 
-            $where[] = array('sardars.name', 'LIKE', trim($request->q).'%');
+        if($request->sardar_id) { 
+            $where[] = array('sardars.id',  $request->sardar_id );
         }
         $sardars = DB::table('vouchers')
         ->join('voucher_transactions', 'vouchers.id', '=', 'voucher_transactions.voucher_id')
@@ -40,7 +41,8 @@ class AdvanceController extends Controller
         ->orderby('vouchers.date','desc')
         ->get();
         
-        return view('register.sardar.view', compact('sardars','request','navlink','urls1','urls2','link1','link2')); 
+        $sardar_list  = Helper::allSardars($list = true);
+        return view('register.sardar.view', compact('sardars','sardar_list','request','navlink','urls1','urls2','link1','link2')); 
  
     }
 
@@ -74,38 +76,15 @@ class AdvanceController extends Controller
         DB::beginTransaction();  
         $ledger = Ledger::where('register',1)->first();
         $message    = $class = '';
-        $data       = $request->all(); 
-        $voucher['date'] =  date('y-m-d', strtotime($data['date'])); 
-        $voucher['voucher_type']=1;
-        $voucher['remarks'] = $data['remarks'];
-
-        $last_voucher_data = Voucher::whereStatus(1)->orderBy('voucher_number', 'DESC')->first();
-
-        $new_voucher_number = 1;
-
-        if($last_voucher_data) {
-            $new_voucher_number = ($last_voucher_data->voucher_number) + 1;
-        }
-
-        $voucher['voucher_number']  = $new_voucher_number; 
-        $validator = Validator::make($data, Voucher::$rules);
-        if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
-        $result = Voucher::create($voucher); //INSERT VOUCHER TABLE
+        $data       = $request->all();  
+        $result = VoucherHelper::voucher(date('y-m-d', strtotime($data['date'])), 1, $data['remarks']);   
         if($result) 
         {
             $id = $result->id;
-            $val['voucher_id'] =  $id; 
-            $val['ledger_id']= $data['ledger'];
-            $val['cr'] = 0; 
-            $val['dr'] = $data['amount']; 
-            $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE FIRST ENTRY
+           $result = VoucherHelper::vouchertrans($id,  $data['ledger'], '0', $data['amount'] );  
             if($result) 
             {            
-                $val['voucher_id'] =  $id; 
-                $val['ledger_id']= $ledger->id;
-                $val['cr'] = $data['amount'];
-                $val['dr'] = 0; 
-                $result = VoucherTransaction::create($val); //INSERT VOUCHER TRANSACTION TABLE SECOND ENTRY
+                $result = VoucherHelper::vouchertrans($id,  $ledger->id, $data['amount'], '0' ); 
                 if($result) 
                 {
                     $transid = $result->id; 
