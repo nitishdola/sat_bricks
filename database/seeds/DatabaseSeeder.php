@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
             )
         );*/
 
-        $this->call(BrickType::class);
+       // $this->call(BrickType::class);
+       $this->call(AccounHeadSeeder::class);
+       $this->call(RegisterSeeder::class);
+       $this->call(LedgerSeed::class);
     }
 }
