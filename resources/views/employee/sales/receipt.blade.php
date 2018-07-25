@@ -21,7 +21,7 @@
     <div class="col">
         <div class="card"> 
             
-            <div class="card-body">
+            <div class="card-body" id="print_area">
                 <div class="invoice-wrapper">
               <div class="invoice-header border-bottom">
                 <div class="row">
@@ -58,6 +58,9 @@
                               {{ $sale->customers->address }}<br>
                               {{ $sale->customers->mobile_number }}<br>
                             </address>
+
+                            <p>Vehicle Number : {{ $sale->vehicle_number }}</p>
+                            <p>Driver : {{ $sale->driver_name }}</p>
                         </div>
                             <div class="col-sm-12 col-md-6 text-right">
                               <ul class="summary">
@@ -144,13 +147,31 @@
                   </div>
                 </div>
 
+                <p style="text-align: center; margin-top: 3%">This is a computer generated invoice</p>
+
             </div>
 
             <div class="card-footer bg-light">
-            <button class="btn btn-primary pull-right m-t-20 m-b-20">PRINT</button>
+            <button class="btn btn-primary pull-right m-t-20 m-b-20" type="button" onclick="window.print();">PRINT</button>
             </div>
         </div>
     </div> 
 </div>
 
+@stop
+
+@section('pageCss')
+<style>
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print_area * {
+    visibility: visible;
+    font-size: 12px;
+    color: #000;
+  }
+}
+
+</style>
 @stop
