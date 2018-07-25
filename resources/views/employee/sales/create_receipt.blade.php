@@ -111,6 +111,26 @@ calculateBalAmt = function(key) {
 
 }
 
+addFare = function() {
+    if($('#fare').val() != '') {
+        fare        = parseFloat($('#fare').val());
+    }else{
+        fare        = 0;
+    }
+
+    ttlC = 0;
+
+    $('.brick-total-cost').each(function (j, x) {
+        if($(this).val() != '') {
+            ttlC += parseFloat($(this).val());
+        }
+    });
+    $('#consTotalAmnt').text(parseFloat(ttlC+fare).toFixed(2));
+
+    $('#amount_paid').val(parseFloat(ttlC+fare).toFixed(2));
+    
+}
+
 $('.selectizeNadd').selectize({
     create:function (input, callback){
         callback({

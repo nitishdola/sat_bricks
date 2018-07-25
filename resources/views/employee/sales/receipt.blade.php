@@ -108,17 +108,32 @@
                                     ( {{ Helper::convrtToIndianCurrency($ttl) }} )
                                 </th>
                             </tr>
+
+                            <tr>
+                                <th colspan="5" style="text-align: right;"> FARE</th>
+                                <th style="text-align: right;">{{ number_format((float)$sale->fare, 2, '.', '')  }}
+                                    
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <th colspan="5" style="text-align: right;">TOTAL AMOUNT TO BE PAID</th>
+                                <th style="text-align: right;">{{ number_format((float)($ttl+$sale->fare), 2, '.', '')  }}
+                                 
+                                </th>
+                            </tr>
+
                             <tr>
                                 <th colspan="5" style="text-align: right;">AMOUNT PAID</th>
                                 <th style="text-align: right;">{{ number_format((float)$voucher_trans->cr, 2, '.', '')  }}
                                  
                                 </th>
                             </tr>
-                            @if($ttl -  $voucher_trans->cr > 0)
+                            @if( ($ttl+$sale->fare) -  $voucher_trans->cr > 0)
                             <tr>
                                 <th colspan="5" style="text-align: right;"> BALANCE</th>
                                 <th style="text-align: right;"> 
-                                {{ number_format((float)($ttl -  $voucher_trans->cr), 2, '.', '')  }}
+                                {{ number_format((float)( ($ttl+$sale->fare) -  $voucher_trans->cr), 2, '.', '')  }}
                                  
                                 </th>
                             </tr>

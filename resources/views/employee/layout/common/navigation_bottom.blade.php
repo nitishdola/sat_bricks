@@ -12,8 +12,8 @@
 					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-browser"></i><span class="hide-menu">Sales</span></a>
 					<ul aria-expanded="false" class="collapse">
 						<li><a href="{{ route('employee.receipt.create') }}">Create Receipt</a></li>
-						<li><a href="{{ route('employee.receipt.view_all') }}">View All Sales Information</a></li>
-						<li><a href="themes/quantum-pro/demos/demo6/pages-search.html">Ledger</a></li>
+						<li><a href="{{ route('employee.receipt.view_all') }}">View All Sales Report</a></li>
+					 
 					</ul>
 				</li>
 				
