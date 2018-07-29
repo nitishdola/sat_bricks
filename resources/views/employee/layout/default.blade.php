@@ -7,6 +7,9 @@
 	<title>SAT Bricks | Employee </title>
 	<!-- ================== GOOGLE FONTS ==================-->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+	
 	<!-- ======================= GLOBAL VENDOR STYLES ========================-->
 	<link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/vendor/metismenu/dist/metisMenu.css') }}">

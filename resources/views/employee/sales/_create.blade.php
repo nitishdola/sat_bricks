@@ -25,6 +25,24 @@
   </div>
 </div>
 
+
+<div class="form-group row {{ $errors->has('vehicle_number') ? 'has-error' : ''}}">
+    {!! Form::label('vehicle Number *', '', array('class' => 'control-label text-right col-md-3')) !!}
+    <div class="col-md-5">
+      {!! Form::text('vehicle_number', null , ['class' => 'form-control', 'id' => 'vehicle_number', 'placeholder' => 'Vehicle Number', 'required' => 'true', ]) !!}
+    </div>
+    {!! $errors->first('vehicle_number', '<span class="help-inline">:message</span>') !!}
+</div>
+
+<div class="form-group row {{ $errors->has('driver_name') ? 'has-error' : ''}}">
+    {!! Form::label('Driver Name *', '', array('class' => 'control-label text-right col-md-3')) !!}
+    <div class="col-md-5">
+     {!! Form::text('driver_name', null , ['class' => 'form-control', 'id' => 'driver_name', 'placeholder' => 'Driver Name', 'required' => 'true', ]) !!}
+    </div>
+    {!! $errors->first('driver_name', '<span class="help-inline">:message</span>') !!}
+</div>
+
+
 <hr>
 <h3> Items</h3>
 
@@ -74,6 +92,20 @@
       <th colspan="5"><span class="pull-right">Total Cost</span></th>
       <th id="consTotalAmnt"></th>
     </tr>
+
+
+    <tr>
+      <th colspan="5" align="right">
+       <span class="pull-right"> Fare</span>
+      </th>
+      <td>
+      {!! Form::text('fare', null , ['class' => 'form-control', 'id' => 'fare','onkeyup' => 'addFare()', 'placeholder' => 'Fare', 'required' => 'true', ]) !!}
+    
+      </td>
+    </tr>
+
+    
+
     <tr>
       <th colspan="5" align="right">
        <span class="pull-right"> Amount Paid by the Customer</span>
@@ -83,6 +115,8 @@
     
       </td>
     </tr>
+
+
     <tr>
       <th colspan="5"><span class="pull-right">Balance</span></th>
       <th id="consBalAmnt"></th>

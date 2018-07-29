@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AccountHeadSeeder extends Seeder
+class AccountHead extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class AccountHeadSeeder extends Seeder
             array('name'=>'Liability'),
             array('name'=>'Income'),
             array('name'=>'Expenditure'), 
-        )
-  );
+            )
+        );
     }
 }

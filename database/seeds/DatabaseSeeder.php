@@ -31,9 +31,38 @@ class DatabaseSeeder extends Seeder
             )
         );*/
 
+
        // $this->call(BrickType::class);
-       $this->call(AccounHeadSeeder::class);
-       $this->call(RegisterSeeder::class);
-       $this->call(LedgerSeed::class);
+       /*$this->call(AccounHead::class);
+       $this->call(Register::class);
+       $this->call(Ledger::class);*/
+
+     /*  DB::table('accounts_heads')->insert(array(
+            array('name'=>'Assets'),
+            array('name'=>'Liability'),
+            array('name'=>'Income'),
+            array('name'=>'Expenditure'), 
+            )
+        );*/
+
+
+       DB::table('ledgers')->insert(array(
+                array('name'=>'Credit', 'head_id' => 1, 'cash_ledger' => 0, 'register' => 0), 
+                array('name'=>'SBI Bank 20006121', 'head_id' => 1, 'cash_ledger' => 1, 'register' => 0),
+                array('name'=>'Sales', 'head_id' => 1, 'cash_ledger' => 0, 'register' => 3), 
+            )
+        );
+
+
+      /* DB::table('registers')->insert(array(
+                array('name'=>'Sardars Advance'),
+                array('name'=>'Employees Advance'),
+                array('name'=>'Sales Register'), 
+                array('name'=>'Employees Salary'), 
+                array('name'=>'Sardars Salary'), 
+                array('name'=>'Workers Salary'), 
+            )
+        );*/
+
     }
 }
