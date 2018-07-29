@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Masters\Sardar; 
 use App\Models\Masters\Ledger; 
-use App\Models\Accounting\SardarAdvance; 
+use App\Models\Accounting\SardarPayment; 
 use App\Models\Accounting\Voucher; 
 use App\Models\Accounting\VoucherTransaction; 
 use App\Helpers\VoucherHelper; 
@@ -32,12 +32,15 @@ class AdvanceController extends Controller
         }
         $sardars = DB::table('vouchers')
         ->join('voucher_transactions', 'vouchers.id', '=', 'voucher_transactions.voucher_id')
-        ->join('sardar_advances', 'voucher_transactions.id', '=', 'sardar_advances.trans_id')
+        ->join('sardar_payments', 'vouchers.id', '=', 'sardar_payments.voucher_id')
         ->join('ledgers', 'ledgers.id', '=', 'voucher_transactions.ledger_id')
-        ->join('sardars', 'sardars.id', '=', 'sardar_advances.sardar_id')
-        ->select('vouchers.id','vouchers.date', 'vouchers.remarks', 'ledgers.name as ledger_name', 'voucher_transactions.cr',  'voucher_transactions.dr', 'sardars.name as sardar_name')
-        ->where('vouchers.status',1)->where('voucher_transactions.status',1)->where('sardar_advances.status',1)
+        ->join('sardars', 'sardars.id', '=', 'sardar_payments.sardar_id')
+        
+        ->select('vouchers.id','vouchers.date', 'vouchers.remarks',   DB::raw('SUM(voucher_transactions.cr-voucher_transactions.dr) as cr')  ,   'sardars.name as sardar_name')
+        ->where('vouchers.status',1)->where('voucher_transactions.status',1)->where('sardar_payments.status',1)
         ->where($where)
+        ->where('register','1')
+        ->groupby('vouchers.id','vouchers.date', 'vouchers.remarks',    'sardars.name')
         ->orderby('vouchers.date','desc')
         ->get();
         
@@ -86,11 +89,10 @@ class AdvanceController extends Controller
             {            
                 $result = VoucherHelper::vouchertrans($id,  $ledger->id, $data['amount'], '0' ); 
                 if($result) 
-                {
-                    $transid = $result->id; 
-                    $val['trans_id'] =  $transid; 
+                { 
+                    $val['voucher_id'] =   $id ; 
                     $val['sardar_id']= $data['sardar_id']; 
-                    if(SardarAdvance::create($val)) { //INSERT SARDAR ADVANCE TABLE
+                    if(SardarPayment::create($val)) { //INSERT SARDAR ADVANCE TABLE
                         $class      .= 'alert-success';
                         $message    .= 'Sardar Advance Payment done successfully !';
                     }
@@ -103,22 +105,22 @@ class AdvanceController extends Controller
                 else
                 {
                     $class      .= 'alert-danger';
-                    $message    .= 'Unable store Voucher Transactions 2!';
-                    return Redirect::route('register.sardar.create')->with('message', $message)->with('class', $class ); 
+                    $message    .= 'Unable store Voucher Transactions!';
+                    return Redirect::route('admin.register.sardar.create')->with('message', $message)->with('class', $class ); 
                 }
             }
             else
             { 
                 $class      .= 'alert-danger';
-                $message    .= 'Unable store Voucher Transactions 1!';
-                return Redirect::route('register.sardar.create')->with('message', $message)->with('class', $class ); 
+                $message    .= 'Unable store Voucher Transactions!';
+                return Redirect::route('admin.register.sardar.create')->with('message', $message)->with('class', $class ); 
             }
         }  
         else
         {
             $class      .= 'alert-danger';
             $message    .= 'Unable store Voucher !';
-            return Redirect::route('register.sardar.create')->with('message', $message)->with('class', $class ); 
+            return Redirect::route('admin.register.sardar.create')->with('message', $message)->with('class', $class ); 
         }
         DB::commit(); 
         return Redirect::route('admin.register.sardar.create')->with('message', $message)->with('class', $class );    

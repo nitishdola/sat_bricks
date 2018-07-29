@@ -34,8 +34,7 @@
         <div class="card-body">  
 @include('includes.inner_nav')  
 {!! Form::open(['method' => 'GET', 'route' => ['admin.register.sardar.index']]) !!}
-     
-              {{ csrf_field() }} 
+      
                     <div class="row">
                         <div class="col-md-12  mg-1"> 
                             <div class="form-group input-group col-md-4">

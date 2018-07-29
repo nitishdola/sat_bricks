@@ -33,9 +33,7 @@
         <div class="card"> 
         <div class="card-body">  
 @include('includes.inner_nav')  
-{!! Form::open(['method' => 'GET', 'route' => ['admin.employee.index']]) !!}
-     
-              {{ csrf_field() }} 
+{!! Form::open(['method' => 'GET', 'route' => ['admin.employee.index']]) !!} 
                     <div class="row">
                         <div class="col-md-12  mg-1">
                             <div class="form-group input-group col-md-3">

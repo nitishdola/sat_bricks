@@ -301,3 +301,39 @@ Route::group(['prefix'=>'master'], function() {
         ]);
     });
 }); 
+
+
+
+//Sardar Payent Register========================================================
+Route::group(['prefix'=>'register'], function() { 
+    Route::group(['prefix'=>'sardar'], function() {
+        Route::group(['prefix'=>'payment'], function() {
+            Route::get('/create', [
+                'as' => 'register.sardar.payment.create',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\PaymentController@create'
+            ]);  
+            Route::post('/store', [
+                'as' => 'register.sardar.payment.store',
+                'middleware' => ['admin'],
+                'uses' => 'Register\Sardars\PaymentController@store'
+            ]);
+        }); 
+    }); 
+}); 
+
+//Sardar View ========================================================
+Route::group(['prefix'=>'report'], function() { 
+    Route::group(['prefix'=>'sardar'], function() {
+            Route::get('/allsardars', [
+            'as' => 'report.sardar.list',
+            'middleware' => ['admin'],
+            'uses' => 'Register\Sardars\ReportController@allsardars'
+        ]); 
+        Route::get('/sardarpayment', [
+            'as' => 'report.sardar.transactions',
+            'middleware' => ['admin'],
+            'uses' => 'Register\Sardars\ReportController@sardarpayment'
+        ]); 
+    }); 
+}); 

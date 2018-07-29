@@ -32,8 +32,8 @@ class VoucherHelper
         $val['ledger_id']= $lid;   
         $val['cr'] = $cr; 
         $val['dr'] = $dr;  
-        $validator = Validator::make($val, VoucherTransaction::$rules);
-        if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput(); 
+       // $validator = Validator::make($val, VoucherTransaction::$rules);
+        //if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput(); 
         $result = VoucherTransaction::create($val);
         return $result;
     }
