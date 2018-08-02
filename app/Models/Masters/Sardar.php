@@ -9,7 +9,7 @@ class Sardar extends Model
     protected $table    = 'sardars';
     public $primaryKey  = 'id';
     public $timestamps  = true;
-    protected $fillable 	= array('name','mobile_number','address','sardar_type_id','mill_id'); 
+    protected $fillable 	= array('name','mobile_number','address','sardar_type_id','mill_id', 'fixed_amount_per_unit', 'fixed_amount_per_line'); 
     protected $guarded   	= ['_token'];
     public static $rules 	= [
     	'name' 				=> 'required|max:127',

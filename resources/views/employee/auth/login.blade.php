@@ -20,13 +20,13 @@
 
             <div class="form-group">
                 <label for="inputEmail" class="sr-only">Mobile Number</label>
-                <input type="text" name="mobile_number" id="mobile_number" class="form-control" placeholder="Mobile Number" required="">
+                <input type="text" name="mobile_number" id="mobile_number" class="form-control" placeholder="Mobile Number" autocomplete="off" required="">
             </div>
             <div class="form-group">
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="Password" autocomplete="off" required="">
             </div>
-            <button class="btn btn-primary btn-rounded btn-floating btn-block" type="submit">Sign In</button>
+            <button class="btn btn-primary" type="submit">Sign In</button>
          <p class="text-muted m-t-25 m-b-0 p-0"><a href="{{ route('admin.login') }}"> Login as Admin</a></p>
         </div>
     </div>

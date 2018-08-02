@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-12  mg-1">
                             <div class="form-group input-group col-md-8">
-                            {!! Form::select('sardar', $sardar, $request->sardar, ['class' => 'form-control', 'id' => 'sardar', 'placeholder' => 'Select Sardar',  ]) !!}
+                            {!! Form::select('sardar_id', $sardar, $request->sardar, ['class' => 'form-control', 'id' => 'sardar', 'placeholder' => 'Select Sardar',  ]) !!}
   
                             {!! Form::text('q', $request->q , ['class' => 'form-control', 'id' => 'q', 'placeholder' => 'Search by Worker Name',  ]) !!}
                             <span class="input-group-btn">

@@ -31,8 +31,8 @@ class WorkersController extends Controller
         if($request->q) { 
             $where[] = array('name', 'LIKE', trim($request->q).'%');
         }
-        if($request->sardar) { 
-            $search[] = array('sardar_id', $request->sardar);
+        if($request->sardar_id) { 
+            $search[] = array('sardar_id',$request->sardar_id);
         }
         $sardar  = Helper::allSardars($list = true);
         $worker = Worker::where('status','1')->where($where)->where($search)->orderBy('name', 'asc')->paginate(20); 

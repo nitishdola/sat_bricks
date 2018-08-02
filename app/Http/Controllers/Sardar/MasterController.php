@@ -122,8 +122,9 @@ class MasterController extends Controller
         $id = Crypt::decrypt($id);
         $message    = $class = '';
         $rules      = Sardar::$rules;
-        $rules['mobile_number'] = $rules['mobile_number'] . ',mobile_number,'. $id.',id' ;  
+        $rules['mobile_number'] = $rules['mobile_number'] . ',id,' . $id;
 
+        
         $data       = $request->all(); 
 
         $sardar = Sardar::find($id);

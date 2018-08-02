@@ -13,7 +13,7 @@ class RenameTableSardarAdvanceToPayment extends Migration
      */
     public function up()
     {
-        Schema::rename( 'sardar_advances' ,  'sardar_payments' );
+       // Schema::rename( 'sardar_advances' ,  'sardar_payments' );
     }
 
     /**

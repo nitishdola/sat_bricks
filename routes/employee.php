@@ -38,3 +38,19 @@ Route::group(['prefix'=>'sales'], function() {
         ]);
     });
 });
+
+
+Route::group(['prefix'=>'worker'], function() {
+    Route::group(['prefix'=>'production'], function() {
+        Route::get('/entry', [
+            'as' => 'worker.production.entry',
+            'middleware' => ['employee'],
+            'uses' => 'Employee\WorkersController@productionEntry'
+        ]);
+        Route::post('/entry', [
+            'as' => 'worker.production.save',
+            'middleware' => ['employee'],
+            'uses' => 'Employee\WorkersController@saveProductionEntry'
+        ]);
+    });
+});

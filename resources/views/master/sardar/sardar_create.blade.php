@@ -1,5 +1,13 @@
 @extends('admin.layout.default')
- 
+
+@section('pageCss')
+<style>
+.hideme {
+    display: none;
+}
+</style>
+@stop
+
 @section('breadcumb')
 <div class="d-flex align-items-center">
     <div class="mr-auto">
@@ -35,4 +43,25 @@
     </div>
 </div>
 
+@stop
+
+@section('pageJs')
+<script>
+$('#sardar_type_id').change(function() { console.log('Test1');
+    $sardar_type = $(this).val();
+
+    if($sardar_type != '') { console.log('Test2');
+        if($sardar_type == 1) {
+            $('#production').fadeOut();
+            $('#nikashi').fadeOut();
+        }else if($sardar_type == 2){
+            $('#nikashi').fadeOut();
+            $('#production').fadeIn();
+        }else if($sardar_type == 3) {
+            $('#production').fadeOut();
+            $('#nikashi').fadeIn();
+        }
+    }
+});
+</script>
 @stop

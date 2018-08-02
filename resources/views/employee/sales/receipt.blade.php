@@ -26,7 +26,7 @@
               <div class="invoice-header border-bottom">
                 <div class="row">
                   <div class="col-sm-12 col-md-6">
-                    <h1>INVOICE</h1>
+                    <h1>INVOICE # {{ $sale->invoice_number }}</h1>
                   </div>
                   <div class="col-sm-12 col-md-6 text-right">
                     <div class="logo-wrapper">

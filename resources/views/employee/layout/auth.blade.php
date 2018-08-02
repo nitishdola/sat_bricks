@@ -26,6 +26,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/menu-type/auto-hide.css') }}">
     <!-- ======================= THEME COLOR STYLES ===========================-->
     <link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/themes/theme-j.css') }}">
+    <style>
+        input[type="text"] {
+          -webkit-appearance: searchfield;
+        }
+        input[type="text"]::-webkit-search-cancel-button {
+          -webkit-appearance: searchfield-cancel-button;
+        }
+    </style>
 </head>
 <body class="layout-horizontal menu-auto-hide">
     <div class="container">

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
                 
-            <h5 class="sign-in-heading text-center m-b-20">Sign in as ADMIN</h5>
+            <h5 class="sign-in-heading text-center m-b-20">Sign in as <strong>Admin</strong></h5>
 
             @if(Session::has('message'))
             <div class="row">
@@ -26,7 +26,7 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
             </div>
-            <button class="btn btn-primary btn-rounded btn-floating btn-block" type="submit">Sign In</button>
+            <button class="btn btn-primary" type="submit">Sign In</button>
          <p class="text-muted m-t-25 m-b-0 p-0"><a href="{{ route('employee.login') }}"> Login as Employee</a></p>
         </div>
     </div>

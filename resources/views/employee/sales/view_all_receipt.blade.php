@@ -22,14 +22,16 @@
             
 
             <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered table-striped">
+                    <thead class="alert alert-primary">
                         <tr>
                             <th>#</th>
                             <th>Customer Name</th>
                             <th>Invoice Date</th>
                             <th>Invoice Number</th>
                             <th>Invoice Amount</th>
+                            <th>Driver</th>
+                            <th>Vehicle Registration Number</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,7 +43,7 @@
                                 <td>{{ $k+1}} </td>
                                 <td>{{ $v->customers->name }} <br> {{ $v->customers->adddress }}
                                 </td>
-                                <td>{{ $v->invoice_date }}</td>
+                                <td>{{ date('d-m-Y', strtotime($v->invoice_date)) }}</td>
                                 <td>{{ $v->invoice_number }}</td>
 
                                 <?php 
@@ -56,6 +58,8 @@
                                     }
                                 ?>
                                 <td>{{ number_format((float)$invoice_cost, 2, '.', '')  }}</td>
+                                <td>{{ ucwords($v->driver_name)  }}</td>
+                                <td>{{ strtoupper($v->vehicle_number)  }}</td>
                                 <td><a class="btn btn-success btn-sm" href="{{ route('employee.receipt.view', Crypt::encrypt($v->id)) }}" target="_blank"> View Details</a></td>
                             
                             </tr>

@@ -109,7 +109,7 @@
   	<script src="{{ asset('assets/js/cards/total-unique-visits-chart.js') }}"></script>
 	<script src="{{ asset('assets/js/cards/bar-chart-line-three.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script>
-	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
 
 	@yield('pageJs') 
 	</body>

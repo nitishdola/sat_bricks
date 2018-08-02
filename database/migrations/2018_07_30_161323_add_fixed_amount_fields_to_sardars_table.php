@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterColumnSardarAdvanceTransid extends Migration
+class AddFixedAmountFieldsToSardarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AlterColumnSardarAdvanceTransid extends Migration
      */
     public function up()
     {
-       Schema::table('sardar_advances', function (Blueprint $table) {
-          //  $table->renameColumn('trans_id', 'voucher_id');
+        Schema::table('sardars', function (Blueprint $table) {
+            $table->decimal('fixed_amount_per_unit', 20,2)->nullable()->after('mill_id');
+            $table->decimal('fixed_amount_per_line', 20,2)->nullable()->after('fixed_amount_per_unit');
         });
     }
 
@@ -25,7 +26,7 @@ class AlterColumnSardarAdvanceTransid extends Migration
      */
     public function down()
     {
-        Schema::table('sardar_advances', function (Blueprint $table) {
+        Schema::table('sardars', function (Blueprint $table) {
             //
         });
     }

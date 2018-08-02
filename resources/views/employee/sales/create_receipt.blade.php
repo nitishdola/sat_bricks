@@ -54,6 +54,7 @@ $('.brick-type-select').change(function() {
     $('#unit'+codepassed).val('');
 
     if(brick_type != '') {
+        $.blockUI();
         url = data = '';
 
         data = '&brick_type_id='+brick_type;
@@ -66,10 +67,12 @@ $('.brick-type-select').change(function() {
             type : 'get',
 
             error : function(resp) {
+                 $.unblockUI();
                 alert('Oops ! Something wet wrong. Plese try again');
             },
 
             success : function(resp) {
+                 $.unblockUI();
                 $('#unit'+codepassed).val(resp.unit);
             }
         });
@@ -125,11 +128,41 @@ addFare = function() {
             ttlC += parseFloat($(this).val());
         }
     });
-    $('#consTotalAmnt').text(parseFloat(ttlC+fare).toFixed(2));
+    //$('#consTotalAmnt').text(parseFloat(ttlC+fare).toFixed(2));
 
     $('#amount_paid').val(parseFloat(ttlC+fare).toFixed(2));
     
 }
+
+$('#name').change(function() {
+    $nameVal = $(this).val();
+
+    if(! isNaN($nameVal)) {
+        $.blockUI();
+        url = data = '';
+
+        url = "{{ route('api.customer_data') }}";
+        data = "&customer_id="+$nameVal;
+
+        $.ajax({
+            data : data,
+            url  : url,
+            type : 'get',
+
+            error : function(resp) {
+                $.unblockUI();
+                alert('Oops ! Something wet wrong. Plese try again');
+            },
+
+            success : function(resp) {
+                $.unblockUI();
+                $('#mobile_number').val(resp.mobile_number);
+                $('#address').val(resp.address);
+                $('#hideMe').show();
+            }
+        });
+    }
+});
 
 $('.selectizeNadd').selectize({
     create:function (input, callback){

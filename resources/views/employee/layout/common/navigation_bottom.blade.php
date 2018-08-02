@@ -13,9 +13,12 @@
 					<ul aria-expanded="false" class="collapse">
 						<li><a href="{{ route('employee.receipt.create') }}">Create Receipt</a></li>
 						<li><a href="{{ route('employee.receipt.view_all') }}">View All Sales Report</a></li>
+
 					 
 					</ul>
 				</li>
+
+				<li><a href="{{ route('employee.worker.production.entry') }}"> <i class="fa fa-cog" aria-hidden="true"></i>Enter Daily Production </a></li>
 				
 				
 			</ul>

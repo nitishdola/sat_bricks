@@ -15,7 +15,7 @@ class AlterColoumnTransid extends Migration
     {
         Schema::table('sardar_payments', function (Blueprint $table) {
             
-            $table->dropForeign('sardar_advances_trans_id_foreign');
+        //    $table->dropForeign('sardar_advances_trans_id_foreign');
             $table->foreign('voucher_id')->references('id')->on('vouchers'); 
         });
     }

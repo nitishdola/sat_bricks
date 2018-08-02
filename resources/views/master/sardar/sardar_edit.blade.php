@@ -34,3 +34,38 @@
 </div>
 
 @stop
+
+@section('pageJs')
+<script>
+
+$( window ).on( "load", function() {
+    checkSardarFields();
+});
+
+checkSardarFields = function() {
+    $sardarType = $('#sardar_type_id').val();
+    showHideFlds($sardarType);
+}
+
+
+$('#sardar_type_id').change(function() {
+    $sardar_type = $(this).val();
+    showHideFlds($sardar_type);
+});
+
+showHideFlds = function($sardar_type) {
+    if($sardar_type != '') {
+        if($sardar_type == 1) {
+            $('#production').fadeOut();
+            $('#nikashi').fadeOut();
+        }else if($sardar_type == 2){
+            $('#nikashi').fadeOut();
+            $('#production').fadeIn();
+        }else if($sardar_type == 3) {
+            $('#production').fadeOut();
+            $('#nikashi').fadeIn();
+        }
+    }
+}
+</script>
+@stop

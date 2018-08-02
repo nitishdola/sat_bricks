@@ -26,6 +26,16 @@ class SalesController extends Controller
         	$data = $request->all();
         	if(is_numeric($request->name)) {
         		$data['customer_id'] = $request->name;
+
+                $customer = Customer::find($request->name);
+
+                if($customer) {
+                    $customer->address       = $request->address; 
+                    $customer->mobile_number = $request->mobile_number;
+                    $customer->save();
+                }else{
+                    return Redirect::back()->with(['message' =>'Invalid Customer', 'alert-class' => 'alert-danger']);
+                }
         	}else{
         		$customer_data['name'] 			= $request->name;
         		$customer_data['address'] 		= $request->address;

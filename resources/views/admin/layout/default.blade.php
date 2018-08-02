@@ -86,7 +86,6 @@
 	<script src="{{ asset('assets/vendor/switchery-npm/index.js') }}"></script>
 	<script src="{{ asset('assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 	<!-- ================== PAGE LEVEL VENDOR SCRIPTS ==================-->
-	<script src="{{ asset('assets/vendor/countup.js') }}/dist/countUp.min.js') }}"></script>
 	<script src="{{ asset('assets/vendor/jvectormap-next/jquery-jvectormap.min.js') }}"></script>
 	<script src="{{ asset('assets/vendor/jvectormap-next/jquery-jvectormap-world-mill.js') }}"></script>
 	<script src="{{ asset('assets/vendor/chartist/dist/chartist.js') }}"></script>
