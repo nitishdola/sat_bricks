@@ -14,17 +14,17 @@
 </div>
 
 <div class="form-group {{ $errors->has('salary') ? 'has-error' : ''}}">
-    {!! Form::label('Salary *', '', array('class' => 'form-control-plaintext')) !!}
+    {!! Form::label('Salary', '', array('class' => 'form-control-plaintext')) !!}
 
-      {!! Form::text('salary', null , ['class' => 'form-control required col-md-4', 'id' => 'salary', 'placeholder' => 'Salary', 'required' => 'true', ]) !!}
+      {!! Form::text('salary', null , ['class' => 'form-control required col-md-4', 'id' => 'salary', 'placeholder' => 'Salary', ]) !!}
     
     {!! $errors->first('salary', '<span class="help-inline">:message</span>') !!}
 </div>
 
 <div class="form-group {{ $errors->has('salary_type') ? 'has-error' : ''}}">
-    {!! Form::label('Salary Type *', '', array('class' => 'form-control-plaintext')) !!}
+    {!! Form::label('Salary Type', '', array('class' => 'form-control-plaintext')) !!}
 
-        {!! Form::select('salary_type', $salary_type, null, ['class' => 'form-control required col-md-4', 'id' => 'salary_type', 'placeholder' => 'Select Salary Type', 'required' => 'true', ]) !!}
+        {!! Form::select('salary_type', $salary_type, null, ['class' => 'form-control required col-md-4', 'id' => 'salary_type', 'placeholder' => 'Select Salary Type', ]) !!}
 
     {!! $errors->first('salary_type', '<span class="help-inline">:message</span>') !!}
 </div>

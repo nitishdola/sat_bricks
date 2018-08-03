@@ -17,10 +17,10 @@ class Helper
 	    }
 	    return $randomString;
 	}
-	public static function allSardars($list = false)
+	public static function allSardars($list = false, $where = [])
     {
-    	if($list) return DB::table('sardars')->orderBy('name','asc')->where('status',1)->pluck('name','id');
-		return DB::table('sardars')->orderBy('name','asc')->where('status',1)->get();
+    	if($list) return DB::table('sardars')->orderBy('name','asc')->where($where)->where('status',1)->pluck('name','id');
+		return DB::table('sardars')->orderBy('name','asc')->where($where)->where('status',1)->get();
         
     }
 

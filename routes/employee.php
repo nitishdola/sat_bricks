@@ -52,5 +52,11 @@ Route::group(['prefix'=>'worker'], function() {
             'middleware' => ['employee'],
             'uses' => 'Employee\WorkersController@saveProductionEntry'
         ]);
+
+        Route::get('/view-all', [
+            'as' => 'worker.production.view_all',
+            'middleware' => ['employee'],
+            'uses' => 'Employee\WorkersController@viewAllProductionEntry'
+        ]);
     });
 });

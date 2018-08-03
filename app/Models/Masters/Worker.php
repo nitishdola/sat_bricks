@@ -13,7 +13,7 @@ class Worker extends Model
     protected $guarded   	= ['_token'];
     public static $rules 	= [
     	'name' 				=> 'required|max:127', 
-    	'salary' 			=> 'required|max:12',
+    	//'salary' 			=> 'required|max:12',
     	'sardar_id' 	    => 'required|exists:sardars,id', 
     ]; 
     

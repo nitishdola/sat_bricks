@@ -15,7 +15,7 @@ class APIController extends Controller
 
     public function getSardarWorkersData(Request $request) {
     	$sardar_id = $request->sardar_id;
-    	return Worker::where('sardar_id', $sardar_id)->where('status', 1)->select('id', 'name')->get();
+    	return Worker::where('sardar_id', $sardar_id)->with('sardars')->where('status', 1)->get();
     }
 
     public function getCustomerData(Request $request) {

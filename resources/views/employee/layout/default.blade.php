@@ -36,6 +36,9 @@
 	<!-- ======================= THEME COLOR STYLES ===========================-->
 	<link rel="stylesheet" href="{{ asset('assets/css/layouts/horizontal/themes/theme-j.css') }}">
 	<!-- ======================= USER DEFINE STYLE ===========================-->
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.10/css/bootstrap/zebra_datepicker.min.css">
+	
 	<link rel="stylesheet" href="{{ asset('assets/css/common/mystyle.css') }}">
 
 	@yield('pageCss') 
@@ -110,7 +113,12 @@
 	<script src="{{ asset('assets/js/cards/bar-chart-line-three.js') }}"></script>
   	<script src="{{ asset('assets/js/cards/traffic-sources.js') }}"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.10/zebra_datepicker.min.js"></script>
+  	<script>
+  		$('.pick-a-date').Zebra_DatePicker({
+		    format: 'd-m-Y'
+		});
+  	</script>
 	@yield('pageJs') 
 	</body>
 </html>

@@ -19,7 +19,7 @@ class WorkerProduction extends Model
     ];
     public function worker()
     {
-        return $this->belongsTo('App\Models\Worker', 'worker_id'); 
+        return $this->belongsTo('App\Models\Masters\Worker', 'worker_id'); 
 	}
 
     public function employee()
