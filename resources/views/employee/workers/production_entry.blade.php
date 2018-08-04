@@ -120,6 +120,9 @@ $('#sardar_id').change(function() {
                 }
             }
         });
+    }else{
+        $('#results').hide();
+        $('#errorInfo').hide();
     }
 });
 
