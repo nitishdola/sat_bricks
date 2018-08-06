@@ -13,7 +13,7 @@
 @section('breadcumb')
 <div class="d-flex align-items-center">
     <div class="mr-auto">
-        <h1 class="separator">SAT Bricks| Sardars</h1>
+        <h1 class="separator">SAT Bricks| Ledger</h1>
         <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="themes/quantum-pro/demos/demo6/index.html"><i class="icon dripicons-home"></i></a></li>
@@ -53,68 +53,52 @@
                  Sl.
                 </th>
                 <th>
-                    Sardar Name
+                    Ledger Name
+                </th>
+               
+                <th>
+                Credit
                 </th>
                 <th>
-                      Advance
-                </th>
-                <th>
-                   Production Value 
-                </th>
-                <th>
-                   Paid Excess in Advance
-                </th>
-                <th>
-                Amount to be clear
-                </th>
-                <th>
-                
+                Debit
                 </th> 
                 </tr>
-
-                @if(count($sardars) > 0)
-                @foreach($sardars as $sardars)
+<?php $totalcr =0 ; $totaldr =0 ; ?>
+                @if(count($ledger) > 0)
+                @foreach($ledger as $ledger)
                 <tr>
                 <td>
                 <?php echo $i;?>
                 </td>
                 <td>
-                <strong><a href="{{route('admin.report.sardar.transactions', ['id'=> $sardars->id ]) }}" class="text-info" data-toggle="tooltip"   title="Sardar Payments Details">{{$sardars->SardarName}}</a></strong>
+                <strong><a href="{{route('admin.report.sardar.transactions', ['id'=> $ledger->id ]) }}" class="text-info" data-toggle="tooltip"   title="Ledger">{{$ledger->name}}</a></strong>
                 </td>
                 <td>
-                {{$sardars->adv}}
-                </td>
-                <td>
-                {{$sardars->Total_prod}}
-                </td>
-                <td>
-                @if($sardars->Total_prod - $sardars->adv < 0) 
-                    {{$sardars->adv - $sardars->Total_prod}} 
+                @if($ledger->amt  > 0) 
+                    {{$ledger->amt}} 
+                    <?php   $totalcr +=$ledger->amt   ?>
                 @else
                     0
                 @endif
-              
                 </td>
                 <td>
-                @if($sardars->Total_prod - $sardars->adv > 0) 
-                    {{$sardars->Total_prod - $sardars->adv}} 
+                @if($ledger->amt  <  0) 
+                    {{ -$ledger->amt}} 
+                    <?php  $dr = -$ledger->amt;  $totaldr += $dr  ?>
                 @else
                     0
                 @endif
-              
-                </td>
-                <td> 
-              
-                @if($sardars->Total_prod - $sardars->adv > 0) 
-                <a href="{{route('admin.register.sardar.payment.create', ['id'=>$sardars->id]) }}" data-toggle="tooltip" class="btn btn-primary btn-sm" title="Payment">Payment</a>
-               
-                @endif
-                </td>
+                </td> 
                 
                 <?php   $i++;?>
                 </tr>
                 @endforeach
                 @endif
+                <tr> 
+                <td align="right" colspan="2"><h4>Total</h4></td>
+                <td><h4>{{number_format($totalcr,2, '.', '') }}</h4></td>
+                <td><h4>{{number_format($totaldr,2, '.', '') }}</h4></td>
+                </tr>
                 </table>
             
             </div>  

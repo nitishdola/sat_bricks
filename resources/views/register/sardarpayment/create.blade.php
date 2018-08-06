@@ -26,7 +26,7 @@
                     @include('register.sardarpayment._create')
                      
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a  href="{{ route('admin.register.sardar.create') }}"  class="btn btn-danger" >Reset</a>
+                        <a  href="{{ route('admin.report.sardar.list') }}"  class="btn btn-danger" >Reset</a>
              
                 {!! Form::close() !!}
             </div>
@@ -46,7 +46,34 @@ calculateTotal = function() {
         advrec=0;
     } 
     amt = totamt-advrec;
-    $('#payment').val(amt.toFixed(2));   
+    $('#payment').val(amt.toFixed(2));    
+    paid1 =  parseFloat(amt) + parseFloat(advrec) ;
+    bal=totamt -paid;
+    $('#balance').val(bal.toFixed(2));   
+
+}
+calculateBal = function() {
+    totamt1=  $('#total_amount').val();
+    advrec1=  $('#advance_recovery').val(); 
+    amt1 =  $('#payment').val();    
+    if(amt1=='')
+    {
+        amt1=0;
+    }  
+    paid1 =  parseFloat(amt1) + parseFloat(advrec1) ;
+    bal1=totamt1 -paid1;
+    if(totamt1<paid1)
+    { 
+        amt = totamt1-advrec1;
+        $('#payment').val(amt.toFixed(2));  
+        $('#balance').val('0.00');  
+        alert("You cannot pay more than Total Amount");
+        false;
+    }
+    else
+    {
+        $('#balance').val(bal1.toFixed(2));  
+    }
 
 }
 </script>

@@ -335,5 +335,10 @@ Route::group(['prefix'=>'report'], function() {
             'middleware' => ['admin'],
             'uses' => 'Register\Sardars\ReportController@sardarpayment'
         ]); 
+        Route::get('/ledger', [
+            'as' => 'report.ledger',
+            'middleware' => ['admin'],
+            'uses' => 'Ledger\LedgersController@ledgers'
+        ]); 
     }); 
 }); 

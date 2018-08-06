@@ -42,7 +42,8 @@
 					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-document"></i><span class="hide-menu">Information</span></a>
 					<ul aria-expanded="false" class="collapse">
 					<li><a href="{{ route('admin.report.sardar.list') }}" >Sardar Information</a></li>
-					<li><a href="{{ route('admin.sardar.worker.salary.add') }}" >Employee Information</a></li>					
+					<li><a href="{{ route('admin.sardar.worker.salary.add') }}" >Employee Information</a></li>	
+					<li><a href="{{ route('admin.report.ledger') }}" >Ledger Report</a></li>					
 					</ul>
 				</li>
 			</ul>

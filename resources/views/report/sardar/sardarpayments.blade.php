@@ -72,12 +72,18 @@
                 {{$payments->date}}
                 </td>
                 <td>
-                {{$payments->cr}}
-                <?php   $totalcr +=$payments->cr   ?>
+                @if($payments->amt  >= 0)
+               
+                    {{ $payments->amt}} 
+                    <?php   $totalcr +=$payments->amt   ?>
+                @endif
                 </td>  
                 <td>
-                {{$payments->dr}}
-                <?php   $totaldr +=$payments->dr   ?>
+                @if( $payments->amt   <= 0) 
+                    {{ - $payments->amt}} 
+                    
+                <?php  $pay = -$payments->amt;  $totaldr += $pay  ?>
+                @endif
                 </td>  
                 <?php   $i++;?>
                 </tr>
@@ -90,7 +96,7 @@
                
                 </tr>
                 <tr> 
-                <td align="right" colspan="3"><h4>Total Payment</h4></td> 
+                <td align="right" colspan="3"><h4>Total Payment Done</h4></td> 
                 <td  colspan="3"><h4>{{number_format($totalcr-$totaldr,2, '.', '') }}</h4></td>
                 </tr>
                 </table>

@@ -141,4 +141,20 @@ class LedgersController extends Controller
     {
         //
     }
+    public function ledgers(Request $request)
+    {
+        $where = [];
+        if($request->q) { 
+            $where[] = array('name', 'LIKE', trim($request->q).'%');
+        }  
+        $ledger = DB::table('ledgers')
+        ->join('voucher_transactions', 'ledgers.id', '=', 'voucher_transactions.ledger_id')  
+        ->select( 'ledgers.name', 'ledgers.id',   DB::raw('SUM(voucher_transactions.cr-voucher_transactions.dr) as amt')  )
+        ->where('voucher_transactions.status',1)->where('ledgers.status',1)
+        ->where($where)   
+        ->groupby('ledgers.name','ledgers.id')
+        ->orderby('ledgers.name','asc')
+        ->get();
+        return view('report.accounts.ledger_report', compact('ledger','request')); 
+    }
 }

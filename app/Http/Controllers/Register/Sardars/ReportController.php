@@ -29,12 +29,12 @@ class ReportController extends Controller
         //$sardars = Sardar::where('status','1')->where($where)->orderBy('name', 'asc')->paginate(20); 
         $sardars=  DB::select(DB::raw('SELECT a.id, a.name as SardarName, (SELECT sum(CR-DR)
         from voucher_transactions c inner join sardar_payments b on b.voucher_id = c.voucher_id inner join 
-       ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=1) as adv , 
+       ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=1 and c.status=1 and b.status=1 and d.status=1) as adv , 
        (select sum((bricks_manufactured+bricks_lined_up)*unit_cost) - 
-       IFNULL((SELECT sum(CR) from voucher_transactions c inner join sardar_payments b on b.voucher_id = 
-       c.voucher_id inner join ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=5),0) 
-       from worker_productions w inner join workers wk on wk.id=w.worker_id where wk.sardar_id=a.id) 
-       as Total_prod from sardars a'), array('incrementStart' => 9999) );
+       IFNULL((SELECT sum(CR-DR) from voucher_transactions c inner join sardar_payments b on b.voucher_id = 
+       c.voucher_id inner join ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=5 and c.status=1 and b.status=1 and d.status=1),0) 
+       from worker_productions w inner join workers wk on wk.id=w.worker_id where wk.sardar_id=a.id and wk.status=1 and w.status=1 ) 
+       as Total_prod from sardars a where a.status=1'), array('incrementStart' => 9999) );
 
        return view('report.sardar.sardarlist', compact('sardars','request')); 
     }
@@ -58,7 +58,7 @@ class ReportController extends Controller
         ->join('ledgers', 'ledgers.id', '=', 'voucher_transactions.ledger_id')
         ->join('sardars', 'sardars.id', '=', 'sardar_payments.sardar_id')
         
-        ->select( 'vouchers.date','ledgers.name', 'vouchers.remarks',   DB::raw('SUM(voucher_transactions.cr) as cr') ,   DB::raw('SUM(voucher_transactions.dr) as dr')  ,   'sardars.name as sardar_name')
+        ->select( 'vouchers.date','ledgers.name', 'vouchers.remarks',   DB::raw('SUM(voucher_transactions.cr - voucher_transactions.dr ) as cr') ,   DB::raw('SUM(voucher_transactions.dr) as dr') ,   DB::raw('SUM(voucher_transactions.cr-voucher_transactions.dr) as amt')  ,   'sardars.name as sardar_name')
         ->where('vouchers.status',1)->where('voucher_transactions.status',1)->where('sardar_payments.status',1)
         ->where($where) 
         ->where('ledgers.cash_ledger','0')
