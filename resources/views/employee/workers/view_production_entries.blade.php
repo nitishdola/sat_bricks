@@ -62,7 +62,7 @@
 
                             <tr>
                                 <td> {{ $k+1 }} </td>
-                                <td> {{ $v->date }} </td>
+                                <td> {{ date('d-m-Y', strtotime($v->date)) }} </td>
                                 <td> {{ $v->worker->name }} </td>
                                 <td> {{ $v->bricks_manufactured }} </td>
                                 <td> {{ $v->bricks_lined_up }} </td>

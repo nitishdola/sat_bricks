@@ -20,6 +20,8 @@
 
 				<li><a href="{{ route('employee.worker.production.entry') }}"> <i class="fa fa-cog" aria-hidden="true"></i>Enter Daily Production </a></li>
 				
+				<li><a href="{{ route('employee.worker.production.view_all') }}"> <i class="fa fa-list-ul" aria-hidden="true"></i>View All Daily Production </a></li>
+				
 				
 			</ul>
 		</nav>

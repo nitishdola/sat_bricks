@@ -13,8 +13,8 @@ use App\Models\SardarWorkers\WorkerProduction;
 class WorkersController extends Controller
 {
     public function productionEntry() {
-
-    	$sardars   	= Helper::allSardars($list = true); 
+    	//d$sardars   	= Helper::allSardars($list = true); 
+        $sardars    = Helper::allContractualSardars($list = true); 
     	return view('employee.workers.production_entry', compact('sardars'));
     }
 
@@ -81,7 +81,7 @@ class WorkersController extends Controller
 
     	$results = $result->get();
 
-    	$sardars   	= Helper::allSardars($list = true); 
+    	$sardars   	= Helper::allContractualSardars($list = true); 
 
     	return view('employee.workers.view_production_entries', compact('results', 'sardars'));
     }

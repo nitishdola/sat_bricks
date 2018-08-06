@@ -24,6 +24,11 @@ class Helper
         
     }
 
+  public static function allContractualSardars($list = false, $where = []) {
+    if($list) return DB::table('sardars')->orderBy('name','asc')->where($where)->where('status',1)->where('sardar_type_id', '!=',1)->pluck('name','id');
+    return DB::table('sardars')->orderBy('name','asc')->where($where)->where('status',1)->where('sardar_type_id', '!=',1)->get();
+  }
+
 
     public static function allCustomers($list = false)
     {
