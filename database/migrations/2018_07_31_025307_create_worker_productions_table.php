@@ -16,8 +16,8 @@ class CreateWorkerProductionsTable extends Migration
         Schema::create('worker_productions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('worker_id', false, true);
-            $table->float('bricks_manufactured', 20,2)->nullable();
-            $table->float('bricks_lined_up', 20,2)->nullable();
+            $table->float('bricks_manufactured', 20,2)->nullable()->default(0);
+            $table->float('bricks_lined_up', 20,2)->nullable()->default(0);
             $table->decimal('unit_cost', 20,2);
             $table->date('date');
             $table->integer('employee_id', false, true);
