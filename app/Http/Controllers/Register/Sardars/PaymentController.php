@@ -29,7 +29,7 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Request $request)
     {
         $id="";
         $advance_recovery="";
@@ -40,7 +40,7 @@ class PaymentController extends Controller
         $sardar  = Helper::allSardars($list = true);  
         if($request->id)
         {
-            $id=$id;
+            $id=$request->id;
             $sardarsPay=  DB::select( 'SELECT a.id as sardar_id,  a.name as SardarName, (SELECT sum(CR-DR)
             from voucher_transactions c inner join sardar_payments b on b.voucher_id = c.voucher_id inner join 
             ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=1 and c.status=1) as advance_recovery , 
