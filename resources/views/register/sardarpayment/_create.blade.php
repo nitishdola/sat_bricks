@@ -1,6 +1,4 @@
-@foreach($sardarsPay as $sardarsPay)
-    {{$sardarsPay->sardar_id}}
-    @endforeach
+ 
 <div class="form-group {{ $errors->has('sardar_id') ? 'has-error' : ''}}">
     {!! Form::label('Sardar *', '', array('class' => 'form-control-plaintext')) !!} 
  
