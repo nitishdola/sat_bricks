@@ -18,5 +18,6 @@ class AccountHead extends Seeder
             array('name'=>'Expenditure'), 
             )
         );
+        
     }
 }

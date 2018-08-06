@@ -29,12 +29,24 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-      
+        $id="";
+        if($request->id) { 
+            $id=$request->id;
+        }
         $ledger  = Helper::allCashLedger($list = true); 
-        $sardar  = Helper::allSardars($list = true); 
-        return view("register.sardarpayment.create", compact('sardar','ledger')); 
+        $sardar  = Helper::allSardars($list = true);  
+       
+        $sardarsPay=  DB::select( 'SELECT a.id as sardar_id,  a.name as SardarName, (SELECT sum(CR-DR)
+        from voucher_transactions c inner join sardar_payments b on b.voucher_id = c.voucher_id inner join 
+       ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=1) as advance_recovery , 
+       (select sum((bricks_manufactured+bricks_lined_up)*unit_cost) - 
+       IFNULL((SELECT sum(CR) from voucher_transactions c inner join sardar_payments b on b.voucher_id = 
+       c.voucher_id inner join ledgers d on c.ledger_id= d.id where b.sardar_id=a.id and d.register=5),0) 
+       from worker_productions w inner join workers wk on wk.id=w.worker_id where wk.sardar_id=a.id) 
+       as total_amount from sardars a where a.id='.$id) ; 
+        return view("register.sardarpayment.create", compact('sardar','ledger','','id')); 
  
     }
 

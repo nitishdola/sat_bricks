@@ -53,19 +53,22 @@
                  Sl.
                 </th>
                 <th>
-                Name
+                    Sardar Name
                 </th>
                 <th>
-                Mobile No.
+                      Advance
                 </th>
                 <th>
-                Address 
+                   Production Value 
                 </th>
                 <th>
-                Sardar Type
+                   Paid Excess in Advance
                 </th>
                 <th>
-                Mill
+                Amount to be clear
+                </th>
+                <th>
+                
                 </th> 
                 </tr>
 
@@ -76,19 +79,33 @@
                 <?php echo $i;?>
                 </td>
                 <td>
-                <strong><a href="{{route('admin.report.sardar.transactions', ['id'=> $sardars->id ]) }}" class="text-info" data-toggle="tooltip"   title="Sardar Payments Details">{{$sardars->name}}</a></strong>
+                <strong><a href="{{route('admin.report.sardar.transactions', ['id'=> $sardars->id ]) }}" class="text-info" data-toggle="tooltip"   title="Sardar Payments Details">{{$sardars->SardarName}}</a></strong>
                 </td>
                 <td>
-                {{$sardars->mobile_number}}
+                {{$sardars->adv}}
                 </td>
                 <td>
-                {{$sardars->address}}
+                {{$sardars->Total_prod}}
                 </td>
                 <td>
-                {{$sardars->sardar_types->name}}
+                @if($sardars->Total_prod - $sardars->adv < 0) 
+                    {{$sardars->adv - $sardars->Total_prod}} 
+                @else
+                    0
+                @endif
+              
                 </td>
                 <td>
-                {{$sardars->mills->name}}
+                @if($sardars->Total_prod - $sardars->adv > 0) 
+                    {{$sardars->Total_prod - $sardars->adv}} 
+                @else
+                    0
+                @endif
+              
+                </td>
+                <td> 
+              
+                <a href="{{route('admin.register.sardar.payment.create', ['id'=>$sardars->id]) }}" data-toggle="tooltip" class="btn btn-primary btn-sm" title="Payment">Payment</a>
                 </td>
                 
                 <?php   $i++;?>
