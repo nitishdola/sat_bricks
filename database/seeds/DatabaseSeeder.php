@@ -11,11 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(AdminSeed::class);
-        //$this->call(SardarType::class);
-        //$this->call(MillType::class);
+      //  $this->call(AdminSeed::class);
+        
 
-        /*DB::table('sardar_types')->insert(array(
+      /*  DB::table('sardar_types')->insert(array(
                 array('name'=>'Heavy Duty'),
                 array('name'=>'Light Duty'),
             )
@@ -32,18 +31,18 @@ class DatabaseSeeder extends Seeder
         );*/
 
 
-       // $this->call(BrickType::class);
-       /*$this->call(AccounHead::class);
+       //$this->call(BrickType::class);
+       //$this->call(AccounHead::class);
        $this->call(Register::class);
-       $this->call(Ledger::class);*/
+       $this->call(Ledger::class);
 
-     /*  DB::table('accounts_heads')->insert(array(
+    /*   DB::table('accounts_heads')->insert(array(
             array('name'=>'Assets'),
             array('name'=>'Liability'),
             array('name'=>'Income'),
             array('name'=>'Expenditure'), 
             )
-        );*/
+        );
 
 
        DB::table('ledgers')->insert(array(
@@ -54,7 +53,7 @@ class DatabaseSeeder extends Seeder
         );
 
 
-      /* DB::table('registers')->insert(array(
+       DB::table('registers')->insert(array(
                 array('name'=>'Sardars Advance'),
                 array('name'=>'Employees Advance'),
                 array('name'=>'Sales Register'), 

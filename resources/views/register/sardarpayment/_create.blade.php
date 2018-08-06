@@ -1,6 +1,8 @@
+ 
 <div class="form-group {{ $errors->has('sardar_id') ? 'has-error' : ''}}">
-    {!! Form::label('Sardar *', '', array('class' => 'form-control-plaintext')) !!}
-        {!! Form::select('sardar_id', $sardar, null, ['class' => 'form-control required col-md-8', 'id' => 'sardar_id', 'placeholder' => 'Select Sardar', 'required' => 'true', ]) !!}
+    {!! Form::label('Sardar *', '', array('class' => 'form-control-plaintext')) !!} 
+ 
+        {!! Form::select('sardar_id', $sardar, $id, ['class' => 'form-control required col-md-8', 'id' => 'sardar_id', 'placeholder' => 'Select Sardar', 'required' => 'true', ]) !!} 
     {!! $errors->first('sardar_id', '<span class="help-inline">:message</span>') !!} 
 </div> 
 <div class="form-group {{ $errors->has('total_amount') ? 'has-error' : ''}}">
